@@ -1,1 +1,58 @@
-theme: jekyll-theme-cayman
+#######################
+# Theme Customization #
+#######################
+
+title: Blog          # appears in the header and the HTML <title> tag
+author: Pengfei       # appears in an HTML <meta> tag, as well as feed.xml
+description: >           # appears in an HTML <meta> tag, as well as feed.xml
+  Blogs.
+slogan: Make Vehicle Smart!        # appears in the header, alongside the title
+avatar: /i/avatar.png    # appears as portrait in the header
+banner: /i/mountains.svg # appears as background in the header
+url: http://jekyllrb.com # used by plugins to generate feed.xml and sitemap.xml
+baseurl:       # prepended to all absolute filepaths
+repo: https://pengfeiren.com # appears in footer
+
+# Objects listed here will appear in the main nav menu.
+nav_menu:
+  - name: Posts
+    url: /
+  - name: About
+    url: about.html
+
+#################
+# Site Settings #
+#################
+
+incremental: true
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+
+permalink: /:collection/:path
+
+collections:
+  category: { output: true }
+  tag:      { output: true }
+
+defaults:
+  - scope:  { type:   posts    }
+    values: { layout: post     }
+  - scope:  { type:   tag      }
+    values: { layout: listing  }
+  - scope:  { type:   category }
+    values: { layout: listing  }
+
+sass:
+  sass_dir: _assets/css
+
+plugins:
+  - jekyll-paginate
+  - jekyll-feed
+  - jekyll-sitemap
+
+paginate: 10
+
+github: [metadata]
