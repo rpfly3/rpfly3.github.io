@@ -13,7 +13,7 @@
     
     
       
-        <title>Towards End-to-End Lane Detection: an Instance Segmentation Approach - Pengfei's Docs</title>
+        <title>PersFormer: 3D Lane Detection via Perspective Transformer and the OpenLane Benchmark - Pengfei's Docs</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#towards-end-to-end-lane-detection-an-instance-segmentation-approach" class="md-skip">
+        <a href="#persformer-3d-lane-detection-via-perspective-transformer-and-the-openlane-benchmark" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Towards End-to-End Lane Detection: an Instance Segmentation Approach
+              PersFormer: 3D Lane Detection via Perspective Transformer and the OpenLane Benchmark
             
           </span>
         </div>
@@ -356,6 +356,142 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2d-lane-detection" class="md-nav__link">
+    2D Lane Detection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bev-perception" class="md-nav__link">
+    BEV Perception
+  </a>
+  
+    <nav class="md-nav" aria-label="BEV Perception">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spatial-transformer" class="md-nav__link">
+    Spatial Transformer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lane-line-height" class="md-nav__link">
+    Lane Line Height
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persformer" class="md-nav__link">
+    PersFormer
+  </a>
+  
+    <nav class="md-nav" aria-label="PersFormer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transformer-based-spatial-feature-transformation-module" class="md-nav__link">
+    Transformer-based Spatial Feature Transformation Module
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unified-2d-and-3d-lane-detection-tasks" class="md-nav__link">
+    Unified 2D and 3D Lane Detection Tasks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-work" class="md-nav__link">
+    Related Work
+  </a>
+  
+    <nav class="md-nav" aria-label="Related Work">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vision-transformers-in-birds-eye-view-bev" class="md-nav__link">
+    Vision Transformers in Bird's-Eye-View (BEV)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3d-lane-detection" class="md-nav__link">
+    3D Lane Detection
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methodology" class="md-nav__link">
+    Methodology
+  </a>
+  
+    <nav class="md-nav" aria-label="Methodology">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#approach-overview" class="md-nav__link">
+    Approach Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proposed-perspective-transformer" class="md-nav__link">
+    Proposed Perspective Transformer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -369,112 +505,92 @@
                   
 
 
-<h1 id="towards-end-to-end-lane-detection-an-instance-segmentation-approach">Towards End-to-End Lane Detection: an Instance Segmentation Approach</h1>
-<h1 id="motivation">Motivation</h1>
-<h2 id="traditional-lane-detection">Traditional Lane Detection</h2>
-<p>Traditional lane detection methods rely on a combination of highly-specialized, hand-crafted features and heuristics, usually followed by post-processing techniques.</p>
+<h1 id="persformer-3d-lane-detection-via-perspective-transformer-and-the-openlane-benchmark">PersFormer: 3D Lane Detection via Perspective Transformer and the OpenLane Benchmark</h1>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
 <ul>
-<li>Computationally expensive</li>
-<li>Prone to scalability due to road scene variations.</li>
+<li>Previous work struggled in complex cases due to their simple designs of the spatial transformation between front view and bird's eye view (BEV) and the lack of a realistic dataset.</li>
+<li>PersFormer: an end-to-end monocular 3D lane detector with a novel Transformer-based spatial feature transformation module.</li>
+<li>OpenLane: one of the first large-scale real-world 3D lane datasets, with high-quality annotation and scenario diversity.</li>
 </ul>
-<h2 id="deep-learning-models">Deep Learning Models</h2>
-<p>More recent approaches leverage deep learning models, trained for pixel-wise lane segmentation, even when no markings are present in the image due to their big receptive field. </p>
+</div>
+<h2 id="introduction">Introduction</h2>
+<h3 id="2d-lane-detection">2D Lane Detection</h3>
+<p>With the prosperity of deep learning, lane detection algorithms in the 2D image space has achieved impressive results, where the task is formulated as a 2D segmentation problem given front view (perspective) image as input.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Such a framework to perform lane detection in the perspective view is not applicable for industry-level products where complicated scenarios dominate.</p>
+</div>
+<h3 id="bev-perception">BEV Perception</h3>
+<p>Downstream modules as in planning and control often require the lane location to be in the form of the orthographic bird's eye view (BEV) instead of a front view representation. Representation in BEV is for better task alignment with interactive agents (vehicle, road marker, traffic light, etc.) in the environment and multi-modal compatibility with other sensors such as LiDAR and Radar.</p>
+<p>The conventional approaches to address such a demand are:</p>
 <ul>
-<li>Limited to detecting a pre-defined, fixed number of lanes, e.g. ego-lanes, and can not cope with lane changes.</li>
-<li>At a final stage, the generated binary lane segmentations still need to be disentangled into the different lane instances.</li>
+<li>either to simply project perspective lanes to ones in the BEV space,</li>
+<li>or more elegantly to cast perspective features to BEV by aid of camera in/extrinsic matrices. </li>
 </ul>
-<h1 id="proposed-approach">Proposed Approach</h1>
+<h4 id="spatial-transformer">Spatial Transformer</h4>
+<p>The latter solution is inspired by the spatial transformer network (STN) to generate a one-to-one correspondence from the image to BEV feature grids. <mark>By doing so, the quality of features in BEV depends solely on the quality of the corresponding feature in the front view.</mark></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The predictions using these outcome features are not adorable as the blemish of scale variance in the front view, which inherits from the camera's pinhole model, remains.</p>
+</div>
+<h4 id="lane-line-height">Lane Line Height</h4>
+<p>The height of lane lines has to be considered when we project perspective lanes into BEV space. </p>
+<p><img alt="Fig 1" src="../img/fig_1.png" /></p>
+<p>The lanes would diverge/converge in case of uphill/downhill if the height is ignored, if the height is ignored, leading to improper action decisions as in the planning and control module. <mark>Previous literature inevitably hypothesize that lanes in the BEV space lie on a flat ground, i.e., the height of lanes is zero. The planar assumption does not hold true in most autonomous driving scenarios, e.g., uphill/downhill, bump, crush turn, etc.</mark></p>
+<div class="admonition failure">
+<p class="admonition-title">Failure</p>
+<p>Since the height information is unavailable on public benchmarks or complicated to acquire accurate ground truth, 3D lane detection is ill-posed.</p>
+</div>
+<h3 id="persformer">PersFormer</h3>
+<p><mark>A unified 2D/3D lane detection framework with Transformer.</mark></p>
+<h4 id="transformer-based-spatial-feature-transformation-module">Transformer-based Spatial Feature Transformation Module</h4>
+<p>They model the spatial feature transformation as a learning procedure that has an attention mechanism to capture the interaction both among local region in the front view feature and between two views (front view to BEV), consequently being able to generate a fine-grained BEV feature representation. </p>
 <ul>
-<li>This paper propose to cast the lane detection problem as an instance segmentation problem — in which each lane forms its own instance — that can be trained end-to-end.</li>
-<li>To parametrize the segmented lane instances before fitting the lane, they further propose to apply a learned perspective transformation, conditioned on the image, in contrast to a fixed “bird-eye-view” transformation. By doing so, a lane fitting is robust against road plane changes, unlike existing approaches that rely on a fixed, predefined transformation.</li>
+<li>the deformable attention mechanism is adopted to remarkably reduce the computational memory requirement.</li>
+<li>dynamically adjust keys through the cross-attention module to capture prominent feature among the local region.</li>
 </ul>
-<p><img alt="Screen Shot 2022-10-12 at 11.10.09 AM.png" src="../img/Screen_Shot_2022-10-12_at_11.10.09_AM.png" /></p>
-<h2 id="lanenet">LaneNet</h2>
-<p>Inspired by the success of dense prediction networks in semantic segmentation and instance segmentation tasks, they design a branched, multi-task network for lane instance segmentation, consisting of</p>
+<h4 id="unified-2d-and-3d-lane-detection-tasks">Unified 2D and 3D Lane Detection Tasks</h4>
+<p>They further unify 2D and 3D lane detection tasks to benefit from the co-learning optimization.</p>
+<h2 id="related-work">Related Work</h2>
+<h3 id="vision-transformers-in-birds-eye-view-bev">Vision Transformers in Bird's-Eye-View (BEV)</h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Projecting features to BEV and performing downstream tasks in it has become more dominant and ensured better performance recently.</p>
+</div>
+<p><mark>Compared with conventional CNN structure, the cross attention scheme in Vision Transformers is naturally introduced to serve as a learnable transformation of features across different views.</mark> Instead of simply projecting features via IPM, the successful application of Transformers in view transformation has demonstrated great success in various domains, including 3D object detection, prediction, planning, etc.</p>
+<h3 id="3d-lane-detection">3D Lane Detection</h3>
 <ul>
-<li>a lane segmentation branch</li>
-<li>and a lance embedding branch</li>
+<li><a href="https://arxiv.org/abs/1811.10203">3D-LaneNet: End-to-End 3D Multiple Lane Detection (ICCV 2019)</a></li>
+<li><a href="https://arxiv.org/abs/2003.10656">Gen-LaneNet: A Generalized and Scalable Approach for 3D Lane Detection (ECCV 2020)</a></li>
+<li><a href="https://arxiv.org/abs/2010.12035">Keep your Eyes on the Lane: Real-time Attention-guided Lane Detection (CVPR 2021)</a></li>
 </ul>
-<p>that can be trained end-to-end.</p>
-<p><img alt="Screen Shot 2022-10-12 at 11.13.13 AM.png" src="../img/Screen_Shot_2022-10-12_at_11.13.13_AM.png" /></p>
-<p>The lane segmentation branch has two output classes, background or lane, while the lane embedding branch further disentangles the segmented lane pixels into different lane instances. </p>
-<h2 id="h-net">H-Net</h2>
-<aside>
-💡 Having estimated the lane instances, i.e., which pixels belong to which lane, as a final step we would like to convert each one of them into a parametric description.
-
-</aside>
-
-<p>To this end, curve fitting algorithms have been widely used in the literature. Popular models are</p>
+<h2 id="methodology">Methodology</h2>
+<p>2D/3D lane attributes:</p>
 <ul>
-<li>cubic polynomials</li>
-<li>splines</li>
-<li>clothoids</li>
+<li>ordered set of coordinates</li>
+<li>categorical attribute indicating the type of lane</li>
+<li>each point has its visibility attribute</li>
 </ul>
-<p>To increase the quality of the fit while retaining computational efficiency, it is common to convert the image into a “bird-eye view” using a perspective transformation and perform the curve fitting there.</p>
-<p>In particular, the neural network takes as input the image and is optimized with a loss function that is tailored to the lane fitting problem. </p>
-<aside>
-💡 An inherent advantage of the proposed method is that the lane fitting is robust against road plane changes and is specifically optimized for better fitting the lanes.
-
-</aside>
-
-<h1 id="method">Method</h1>
-<h2 id="lanenet_1">LaneNet</h2>
-<p>The instance segmentation task consists of two parts, a segmentation and a clustering part. To increase performance, both in terms of speed and accuracy, these two parts are jointly trained in a multi-task network.</p>
-<h3 id="binary-segmentation">Binary Segmentation</h3>
-<aside>
-💡 The segmentation branch of LaneNet is trained to output a binary segmentation map, indicating which pixels belong to a lane and which not.
-
-</aside>
-
-<p>To construct the ground-truth segmentation map, we connect all ground-truth lane points together, forming a connected line per lane. </p>
+<h3 id="approach-overview">Approach Overview</h3>
+<p><img alt="Fig 2" src="../img/fig_2.png" /></p>
 <ul>
-<li>Note that they draw these ground-truth lanes even through objects like occluding cars, or also in the absence of explicit visual lane segments, like dashed or faded lanes.</li>
-<li>This way, the network will learn to predict lane location even when they are occluded or in adverse circumstances.</li>
-<li>The segmentation network is trained with the standard cross-entropy loss function. Since the two classes (land/background) are highly unbalanced, they apply bounded inverse class weighting.</li>
+<li>The backbone takes the resized image as input and generates multi-scale front view features where EfficientNet is adopted.</li>
+<li>The Perspective Transformer takes the front view features as input and generates BEV features by the aid of camera intrinsic and extrinsic parameters.</li>
+<li>The lane detection heads are responsible for predicting 2D/3D coordinates as well as lane types. The 2D/3D detection heads are referred to as LaneATT and 3D-LaneNet with modification on the structure and anchor design.</li>
 </ul>
-<h3 id="instance-segmentation">Instance Segmentation</h3>
-<aside>
-💡 Most popular detect-and-segment approaches are not ideal for lane instance segmentation, since bounding box detection is more suited for compact objects, which lanes are not.
-
-</aside>
-
-<p>Therefore they use a one-shot method based on distance metric learning, which can easily be integrated with standard feed-forward networks and which is specifically designed for real-time applications.</p>
-<p>By using the clustering loss function, the instance embedding branch is trained to output an embedding for each lane pixel so that the distance between pixel embeddings belonging to the same lane is small, whereas the distance between pixel embeddings belonging to different lanes is maximized.</p>
-<h3 id="clustering">Clustering</h3>
-<p>The clustering is done by an iterative procedure.</p>
-<ul>
-<li>By setting <span class="arithmatex">\(\delta_d &gt; 6\delta_v\)</span> in the above loss, one can take a random lane embedding and threshold around it with a radius of <span class="arithmatex">\(2 \delta_v\)</span> to select all embeddings belong to the same lane.</li>
-<li>This is repeated until all lane embeddings are assigned to a lane.</li>
-<li>To avoid selecting an outlier to threshold around, we first use mean shift to shift closer to the cluster center and then do the thresholding.</li>
-</ul>
-<h3 id="network-architecture">Network Architecture</h3>
-<aside>
-💡 LaneNet’s architecture is based on the encoder-decoder network ENet, which is consequently modified into a two-branched network.
-
-</aside>
-
-<p>While the original ENet’s encoder consists of three stages, LaneNet only shares the first two stages between the two branches, leaving stage 3 of the ENet encoder and the full ENet decoder as the backbone of each separate branch.</p>
-<p>The last layer of the segmentation branch outputs a one channel image, whereas the last layer of the embedding branch outputs a N-channel image, with N the embedding dimension. </p>
-<aside>
-💡 Each branch’s loss term is equally weighted and back-propagated through the network
-
-</aside>
-
-<h2 id="curve-fitting-using-h-net">Curve Fitting Using H-Net</h2>
-<aside>
-💡 Fitting a polynomial through these pixels in the original image space is not ideal, as one has to resort to higher order polynomials to be able to cope with curved lanes.
-
-</aside>
-
-<p>A frequently used solution to this problem is to project the image into a “bird-eye view” representation, in which lanes are parallel to each other and as such, curved lanes can be fitted with a 2nd or 3rd order polynomial.</p>
-<h3 id="loss-function">Loss Function</h3>
-<p>Since the lane fitting is done by using the closed-form solution of the least squares algorithm, the loss is differentiable. We use automatic differentiation to calculate the gradients.</p>
-<h3 id="network-architecture_1">Network Architecture</h3>
-<p>The network architecture of H-Net is kept intentionally small and is constructed out of consecutive blocks of 3x3 convolutions, BNs and ReLUs. </p>
-<p><img alt="Screen Shot 2022-10-12 at 2.30.29 PM.png" src="../img/Screen_Shot_2022-10-12_at_2.30.29_PM.png" /></p>
-<h1 id="results">Results</h1>
-<h2 id="dataset">Dataset</h2>
-<p>TuSimple lane dataset</p>
+<h3 id="proposed-perspective-transformer">Proposed Perspective Transformer</h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The general idea of Perspective Transformer is to use the coordinates transformation matrix from IPM as a reference to generate BEV feature representation, by attending related region (local context) in front view feature.</p>
+</div>
+<p>On the assumption that the ground is flat and the camera parameters are given, a classical IPM approach calculates a set of coordinate mapping from front-view to BEV, where the BEV space is defined on the flat ground. </p>
+<p><img alt="Equation 2" src="../img/equation_2.png" /></p>
+<p>Such a transformation enframes a strong prior on the attention unit in PersFormer to generate more representative BEV features.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The architecture of Perspective Transformer is inspired by popular approaches such as <a href="https://arxiv.org/abs/2005.12872">DETR</a>, and consists of the self-attention module and cross-attention module.</p>
+</div>
 
 
 

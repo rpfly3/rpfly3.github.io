@@ -489,7 +489,7 @@
 
 <p>Using a FlowNet based encoder can be regarded as introducing the prior knowledge of optical flow into the learning process, and potentially prevents DeepVO from being overfitted to the training datasets.</p>
 <p>The recurrent model summarizes the history information into its hidden states, so that the output is inferred from sensor observation. </p>
-<p>To recover the optimal parameters $\boldsymbol{\theta}^*$ of framework, the optimization target is to minimize the Mean Square Error (MSE) of the estimated translations $\hat{\textbf{p}} \in \mathbb{R}^3$ and euler angle based rotations $\hat{\boldsymbol{\phi}} \in \mathbb{R}^3$:</p>
+<p>To recover the optimal parameters <span class="arithmatex">\(\boldsymbol{\theta}^*\)</span> of framework, the optimization target is to minimize the Mean Square Error (MSE) of the estimated translations <span class="arithmatex">\(\hat{\textbf{p}} \in \mathbb{R}^3\)</span> and euler angle based rotations <span class="arithmatex">\(\hat{\boldsymbol{\phi}} \in \mathbb{R}^3\)</span>:</p>
 <p><img alt="Screen Shot 2022-02-07 at 3.05.39 PM.png" src="../img/Screen_Shot_2022-02-07_at_3.05.39_PM.png" /></p>
 <p>DeepVO reports impressive results on estimating the pose of driving vehicles, even in previously unseen scenarios. In the experiment on the KITTI odometry dataset, this data-driven solution outperforms conventional representative monocular VO, e.g. VISO2 and ORB-SLAM (without loop closure). </p>
 <aside>
@@ -506,16 +506,16 @@
 
 </aside>
 
-<p>The entire framework takes consecutive images as input, and the supervision signal is based on novel view synthesis - given a source image $\textbf{I}_s$, the view synthesis task is to generate a synthetic target image $\textbf{I}_t$. A pixel of source image $\textbf{I}_s(p_s)$ is projected onto a target view $\textbf{I}_t(p_t)$ via:</p>
+<p>The entire framework takes consecutive images as input, and the supervision signal is based on novel view synthesis - given a source image <span class="arithmatex">\(\textbf{I}_s\)</span>, the view synthesis task is to generate a synthetic target image <span class="arithmatex">\(\textbf{I}_t\)</span>. A pixel of source image <span class="arithmatex">\(\textbf{I}_s(p_s)\)</span> is projected onto a target view <span class="arithmatex">\(\textbf{I}_t(p_t)\)</span> via:</p>
 <p><img alt="Screen Shot 2022-02-07 at 3.20.06 PM.png" src="../img/Screen_Shot_2022-02-07_at_3.20.06_PM.png" /></p>
-<p>where $\textbf{K}$ is the camera’s intrinsic matrix, $\textbf{T}_{t→s}$ denotes the camera motion matrix from target frame to source frame, and $\textbf{D}_t(p_t)$ denotes the per-pixel depth maps in the target frame. </p>
+<p>where <span class="arithmatex">\(\textbf{K}\)</span> is the camera’s intrinsic matrix, <span class="arithmatex">\(\textbf{T}_{t→s}\)</span> denotes the camera motion matrix from target frame to source frame, and <span class="arithmatex">\(\textbf{D}_t(p_t)\)</span> denotes the per-pixel depth maps in the target frame. </p>
 <aside>
 💡 The training objective is to ensure the consistency of the scene geometry by optimizing the photometric reconstruction loss between the real target image and the synthetic one.
 
 </aside>
 
 <p><img alt="Screen Shot 2022-02-07 at 3.38.24 PM.png" src="../img/Screen_Shot_2022-02-07_at_3.38.24_PM.png" /></p>
-<p>where $p$ denotes pixel coordinates, $\textbf{I}_t$ is the target image, and $\hat{\textbf{I}}_s$ is the synthetic target image generated from the source image $\textbf{I}_s$.</p>
+<p>where <span class="arithmatex">\(p\)</span> denotes pixel coordinates, <span class="arithmatex">\(\textbf{I}_t\)</span> is the target image, and <span class="arithmatex">\(\hat{\textbf{I}}_s\)</span> is the synthetic target image generated from the source image <span class="arithmatex">\(\textbf{I}_s\)</span>.</p>
 <p>However, there are basically two main problems that remained unsolved in the original work:</p>
 <ol>
 <li>this monocular image based approach is not able to provide pose estimates in a consistent global scale. Due to the scale ambiguity, no physically meaningful global trajectory can be reconstructed, limiting its real use.</li>
@@ -588,6 +588,12 @@
     
     
       <script src="../../../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

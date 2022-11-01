@@ -412,7 +412,7 @@
 <p>R-CNN is agnostic to the particular region proposal method, however, they use selective search to enable a controlled comparison with prior detection work.</p>
 <h3 id="feature-extraction">Feature extraction</h3>
 <p>They extract a 4096-dimensional feature vector from each region proposal using the Caffe implementation of AlexNet. Features are computed by forward propagating a <strong>mean-subtracted 227 x 227 RGB image</strong> through five convolutional layers and two fully connected layers.</p>
-<p>Regardless of the size or aspect ratio of the candidate region, they warp all pixels in a tight bounding box around it to the required size. Prior to warping, they dilate the tight bounding box so that at the warped size there are exactly $$p$$ pixels of warped image context around the original box (they use $$p = 16$$).</p>
+<p>Regardless of the size or aspect ratio of the candidate region, they warp all pixels in a tight bounding box around it to the required size. Prior to warping, they dilate the tight bounding box so that at the warped size there are exactly <span class="arithmatex">\(<span class="arithmatex">\(p\)</span>\)</span> pixels of warped image context around the original box (they use <span class="arithmatex">\(<span class="arithmatex">\(p = 16\)</span>\)</span>).</p>
 <p><strong>Object proposal transformations</strong>:</p>
 <ul>
 <li>tightest square with context: enclosing each object proposal inside the tighest square and then scales (isotropically) the image contained in that square to the CNN input size.</li>
@@ -483,6 +483,12 @@
     
     
       <script src="../../../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
