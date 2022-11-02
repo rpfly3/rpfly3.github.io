@@ -1,0 +1,777 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+    
+    
+      
+        <title>Transformer - Pengfei's Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#transformer" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="Pengfei&#39;s Docs" class="md-header__button md-logo" aria-label="Pengfei's Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.5 9V1.5h-3V9h-3V1.5h-3V9h-3V1.5H4.65V9H3v1.5h18V9h-1.5m0 4.5h-3V21h-3v-7.5h-3V21h-3v-7.5H4.65V21H3v1.5h18V21h-1.5v-7.5Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Pengfei's Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Transformer
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../cpp/" class="md-tabs__link">
+        Documents
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../../../about/" class="md-tabs__link">
+      About
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Pengfei&#39;s Docs" class="md-nav__button md-logo" aria-label="Pengfei's Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.5 9V1.5h-3V9h-3V1.5h-3V9h-3V1.5H4.65V9H3v1.5h18V9h-1.5m0 4.5h-3V21h-3v-7.5h-3V21h-3v-7.5H4.65V21H3v1.5h18V21h-1.5v-7.5Z"/></svg>
+
+    </a>
+    Pengfei's Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Documents
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Documents" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Documents
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cpp/" class="md-nav__link">
+        C++
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Autonomous Vehicle
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Autonomous Vehicle" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Autonomous Vehicle
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        Detection
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tracking/" class="md-nav__link">
+        Tracking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../slam/" class="md-nav__link">
+        SLAM
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../system/" class="md-nav__link">
+        System
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-high-level-look" class="md-nav__link">
+    A High-Level Look
+  </a>
+  
+    <nav class="md-nav" aria-label="A High-Level Look">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#encoding" class="md-nav__link">
+    Encoding
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decoding" class="md-nav__link">
+    Decoding
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encoding_1" class="md-nav__link">
+    Encoding
+  </a>
+  
+    <nav class="md-nav" aria-label="Encoding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bringing-the-tensors-into-the-picture" class="md-nav__link">
+    Bringing The Tensors Into The Picture
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-attention" class="md-nav__link">
+    Self-Attention
+  </a>
+  
+    <nav class="md-nav" aria-label="Self-Attention">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#self-attention-in-detail" class="md-nav__link">
+    Self-Attention in Detail
+  </a>
+  
+    <nav class="md-nav" aria-label="Self-Attention in Detail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#first-step" class="md-nav__link">
+    First Step
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#second-step" class="md-nav__link">
+    Second Step
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#third-and-fourth-steps" class="md-nav__link">
+    Third and Fourth Steps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fifth-and-sixth-steps" class="md-nav__link">
+    Fifth and Sixth Steps
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrix-calculation-of-self-attention" class="md-nav__link">
+    Matrix Calculation of Self-Attention
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#muti-headed-attention" class="md-nav__link">
+    Muti-Headed Attention
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="transformer">Transformer</h1>
+<h2 id="a-high-level-look">A High-Level Look</h2>
+<p>In a machine translation application, it would take a sentence in one language, and output its translation in another. </p>
+<h3 id="encoding">Encoding</h3>
+<p>The encoding component is a stack of encoders (the paper stacks six of them on top of each other — there’s nothing magical about the number six, one can definitely experiment with other arrangements). The decoding component is a stack of decoders of the same number.</p>
+<p><img alt="Untitled" src="../img/Untitled.png" /></p>
+<p>The encoders are all identical in structure (yet they do not share weights). Each one is broken down into two sub-layers:</p>
+<p><img alt="Untitled" src="../img/Untitled%201.png" /></p>
+<ul>
+<li>Self-attention layer: a layer that helps the encoder look at other words in the input sentence as it encodes a specific word.</li>
+<li>Feed-forward network: the exact same feed-forward network is independently applied to each position.</li>
+</ul>
+<h3 id="decoding">Decoding</h3>
+<p>The decoder has both Self-attention layer and Feed Forward layer, but between them is an attention layer that helps the decoder focus on relevant parts of the input sentence. </p>
+<p><img alt="Untitled" src="../img/Untitled%202.png" /></p>
+<h2 id="encoding_1">Encoding</h2>
+<h3 id="bringing-the-tensors-into-the-picture">Bringing The Tensors Into The Picture</h3>
+<p>The abstraction that is common to all the encoders is that they receive a list of vectors each of the size 512. <mark>The size of the list is a hyper-parameter we can set — basically it would be the length of the longest sentence in our training dataset.</mark></p>
+<ul>
+<li>In the bottom encoder that would be the word embeddings,</li>
+<li>but in other encoders, it would be the output of the encoder that’s directly below.</li>
+</ul>
+<p>After embedding the words in our input sequence, each of them flows through each of the two layers of the encoder. </p>
+<p><img alt="Untitled" src="../img/Untitled%204.png" /></p>
+<p>Here we begin to see one key property of the Transformer:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The word in each position flows through its own path in the encoder. There are dependencies between these paths in the self-attention layer. The feed-forward layer does not have those dependencies, however, and thus the various paths can be executed in parallel while flowing through the feed-forward layer.</p>
+</div>
+<p>An encoder receives a list of vectors as input, and processes this list by passing these vectors into a self-attention layer, then into a feed-forward neural network (<mark>the exact same network with each vector flowing through it separately</mark>), then sends out the output upwards to the next encoder.</p>
+<p><img alt="encoder" src="../img/Screenshot%202022-11-02%20at%2012.47.07%20AM.png" /></p>
+<h3 id="self-attention">Self-Attention</h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Self-attention is the method the Transformer uses to bake the “understanding” of other relevant words into the one we’re currently processing.</p>
+</div>
+<p>As the model processes each word (each position in the input sequence), self-attention allows it to look at other positions in the input sequence for clues that can help lead to a better encoding for this word.</p>
+<p><img alt="self-attention-high-level" src="../img/Screenshot%202022-11-02%20at%2012.53.41%20AM.png" /></p>
+<h4 id="self-attention-in-detail">Self-Attention in Detail</h4>
+<h5 id="first-step">First Step</h5>
+<p><mark>The first step in calculating self-attention is to create three vectors from each of the encoder’s input vectors (in this case, the embedding of each word).</mark> So for each word, we create a Query vector, a Key vector, and a Value vector</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These vectors are created by multiplying the embedding by three matrices that we trained during the training process.</p>
+</div>
+<p>Notice that these new vectors are smaller in dimension than the embedding vector. They don’t have to be smaller, this is an architecture choice to make the computation of multi-headed attention (mostly) constant.</p>
+<p><img alt="Untitled" src="../img/Untitled%205.png" /></p>
+<h5 id="second-step">Second Step</h5>
+<p><mark>The second step in calculating self-attention is to calculate a score.</mark></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The score is calculated by taking the dot product of the query vector with the key vector of the respective word we’re scoring. The score determines how much focus to place on other parts of the input sentence as we encode at a certain position. </p>
+</div>
+<p>So if we’re processing the self-attention for the word in position #1:</p>
+<ul>
+<li>the first score would be the dot product of q1 and k1.</li>
+<li>the second score would be the dot product of q1 and k2.</li>
+</ul>
+<p><img alt="Untitled" src="../img/Untitled%206.png" /></p>
+<h5 id="third-and-fourth-steps">Third and Fourth Steps</h5>
+<p>The third step is to divide the scores by the square root of the dimension of the key vectors used in the paper. <mark>This leads to having more stable gradients.</mark> There could be other possible values here, but this is the default. </p>
+<p>In the fourth step, we pass the result through a softmax operation. Softmax normalizes the scores so they’are all positive and add up to 1. <mark>This softmax score determines how much each word will be expressed at this position.</mark> Clearly the word at this position will have the highest softmax score, but sometimes it’s useful to attend to another word that is relevant to the current word.</p>
+<p><img alt="Untitled" src="../img/Untitled%207.png" /></p>
+<h5 id="fifth-and-sixth-steps">Fifth and Sixth Steps</h5>
+<p>The fifth step is to multiply each value vector by the softmax score (in preparation to sum them up). The intuition here is to keep intact the values of the word(s) we want to focus on, and drown-out irrelevant words (by multiplying them by tiny numbers).</p>
+<p>The sixth steps is to sum up the weighted value vectors. This produces the output of the self-attention layer at this position. </p>
+<p><img alt="Untitled" src="../img/Untitled%208.png" /></p>
+<p>That concludes the self-attention calculation. The resulting vector  is one we can send along to the feed-forward neural network. </p>
+<h4 id="matrix-calculation-of-self-attention">Matrix Calculation of Self-Attention</h4>
+<p>The first step is to calculate the Query, Key, and Value matrices. We do that by packing our embeddings into a matrix <code>X</code>, and multiplying it by the weight matrices we've trained (<span class="arithmatex">\(W^Q\)</span>, <span class="arithmatex">\(W^K\)</span>, <span class="arithmatex">\(W^V\)</span>).</p>
+<p><img alt="Untitled" src="../img/Untitled%209.png" /></p>
+<p>The other steps can be condensed into this formula:</p>
+<p><img alt="Untitled" src="../img/Untitled%2010.png" /></p>
+<h3 id="muti-headed-attention">Muti-Headed Attention</h3>
+<p>The paper further refined the self-attention layer by adding a mechanism called multi-headed attentions. This improves the performance of the attention layer in two ways:</p>
+<ul>
+<li>It expands the model’s ability to focus on different positions. Yes, in the example above, z1 contains a little bit of every other encoding, but it could be dominated by the actual word itself.</li>
+<li>It gives the attention layer multiple “representation subspaces”. As we’ll see next, with multi-headed attention we have not only one, but multiple sets of Query/Key/Value weight matrices (the Transformer uses eight attention heads, so we end up with eight sets for each encoder/decoder). Each of these is randomly initialized. Then, after training, each set is used to project the input embeddings (or vectors from lower encoders/decoders) into a different representation subspace.</li>
+</ul>
+<p><img alt="Untitled" src="../img/Untitled%2011.png" /></p>
+<p>If we do the same self-attention calculation we outlined above, just eight different times with different weight matrices, we end up with eight different Z matrices. This leaves us with a bit of a challenge.</p>
+<aside>
+💡 The feed-forward layer is not expecting eight matrices — it’s expecting a single matrix (a vector for each word).
+
+</aside>
+
+<p>We need a way to condense these eight down into a single matrix. We concat the matrices then multiply them by an additional weights matrix <span class="arithmatex">\(W^O\)</span>.</p>
+<p><img alt="Untitled" src="../img/Untitled%2012.png" /></p>
+<p>Put everything together:</p>
+<p><img alt="Untitled" src="../img/Untitled%2013.png" /></p>
+<h1 id="representing-the-order-of-the-sequence-using-positional-encoding">Representing The Order of The Sequence Using Positional Encoding</h1>
+<p>One thing that’s missing from the model as we have described it so far is a way to account for the order of the words in the input sequence.</p>
+<p>To address this, the transformer adds a vector to each input embedding. These vectors follow a specific pattern that the model learns, which helps it determine the position of each word, or the distance between different words in the sequence. </p>
+<aside>
+💡 The intuition here is that adding these values to the embeddings provides meaningful distances between the embedding vector once they’re projected into Q/K/V vectors and during dot-product attention.
+
+</aside>
+
+<p>There are other possible methods for positional encoding. </p>
+<h1 id="the-residuals">The Residuals</h1>
+<p>One detail in the architecture of the encoder that we need to mention before moving on, is that each sub-layer in each encoder has a residual connection around it, and is followed by a layer-normalization step.</p>
+<p><img alt="Untitled" src="../img/Untitled%2014.png" /></p>
+<h1 id="the-decoder-side">The Decoder Side</h1>
+<p>The encoder start by processing the input sequence. </p>
+<aside>
+💡 The output of the top encoder is then transformed into a set of attention vectors K and V.
+
+</aside>
+
+<p>These are to be used by decoder in its “encoder-decoder attention” layer which helps the decoder focus on appropriate places in the input sequence.</p>
+<p>The following steps repeat the process until a special symbol is reached indicating the transformer decoder has completed its output. </p>
+<aside>
+💡 The output of each step is fed to the bottom decoder in the next time step, and the decoders bubble up their decoding results just like the encoders did.
+
+</aside>
+
+<p>And just like we did with the encoder inputs, we embed and add positional encoding to those decoder inputs to indicate the position of each word.</p>
+<p><img alt="Untitled" src="../img/Untitled%2015.png" /></p>
+<p>The self-attention layers in the decoder operate in a slightly different way than the one in the encoder:</p>
+<aside>
+💡 In the decoder, the self-attention layer is only allowed to attend the earlier positions in the output sequence.
+
+</aside>
+
+<p>This is done by masking future positions (setting them to <code>-inf</code>) before the softmax step in the self-attention calculation.</p>
+<p>The “Encoder-Decoder Attention” layer works just like multi-headed self-attention, except it creates its Queries matrix from the layer below it, and takes the Keys and Values matrix from the output of the encoder stack.</p>
+<h1 id="the-final-linear-and-softmax-layer">The Final Linear and Softmax Layer</h1>
+<aside>
+💡 The Linear layer is a simple fully connected neural network that projects the vector produced by the stack of decoders, into a much, much larger vector called a logits vector.
+
+</aside>
+
+<p>Let’s assume that our model knows 10000 unique English words that it’s learned from its training dataset. This would make the logits vector 10000 cells wide — each cell corresponding to the scope of a unique word. That is how we interpret the output of the model followed by the Linear layer.</p>
+<p><img alt="Untitled" src="../img/Untitled%2016.png" /></p>
+<h1 id="the-loss-function">The Loss Function</h1>
+<p>Now, because the model produces the outputs one at a time, we can assume that the model is selecting the word within the highest probability from that </p>
+<h1 id="reference">Reference</h1>
+<ul>
+<li><a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a></li>
+<li><a href="https://jalammar.github.io/illustrated-transformer/">The Illustrated Transformer</a></li>
+<li><a href="https://www.youtube.com/watch?v=-QH8fRhqFHM&amp;ab_channel=JayAlammar">The Narrated Transformer Language Model</a></li>
+<li><a href="http://nlp.seas.harvard.edu/2018/04/03/attention.html">The Annotated Transformer</a></li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2019 - 2022 Pengfei Ren
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    <a href="https://github.com/rpfly3" target="_blank" rel="noopener" title="Pengfei on Twitter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+        <script src="../../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
