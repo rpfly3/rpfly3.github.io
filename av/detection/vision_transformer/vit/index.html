@@ -574,6 +574,48 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-work" class="md-nav__link">
+    Related Work
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method" class="md-nav__link">
+    Method
+  </a>
+  
+    <nav class="md-nav" aria-label="Method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vision-transformer-vit" class="md-nav__link">
+    Vision Transformer (ViT)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -589,6 +631,46 @@
 
 <h1 id="an-image-is-worth-16x16-words-transformers-for-image-recognition-at-scale">An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale</h1>
 <p><img alt="paper" src="../img/Screenshot%202022-11-02%20at%2010.14.38%20PM.png" /></p>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<ul>
+<li>In vision, attention is either applied in conjunction with convolutional networks, or used to replace certain components of convolutional networks while keeping their overall structure in place.</li>
+<li>They show that the reliance on CNNs is not necessary and a pure transformer applied directly to sequences of image patches can perform very well on image classification tasks.</li>
+<li>Vision Transformer (ViT) can attain excellent results compared to state-of-the-art convolutional networks while requiring substantially fewer computational resources to train.</li>
+</ul>
+</div>
+<h2 id="introduction">Introduction</h2>
+<p>Inspired by the Transformer scaling successes in NLP, they experiment with applying a standard Transformer directly to images, with the fewest pssible modifications. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>They split an image into patches and provide the sequence of linear embeddings of these patches as an input to a Transformer. Image patches are treated the same way as tokens (words) in an NLP application.</p>
+</div>
+<h2 id="related-work">Related Work</h2>
+<p>Naive application of self-attention to images would require that each pixel attends to every other pixel. With quadratic cost in the number of pixels, this does not scale to realistic input sizes. Several approximations have been tried:</p>
+<ul>
+<li>Apply the self-attention only in local neighborhoods for each query pixel instead of globally. Such local multi-head dot-product self attention blocks can completely replace convolutions.</li>
+<li>Sparse Transformers employ scalable approximations to global self attention in order to be applicable to images.</li>
+<li>Apply self attention in blocks of varying sizes.</li>
+<li>...</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Many of these specialized attention architectures demonstrate promising results on computer vision tasks, but require complex engineering to be implemented efficiently on hardware accelerators.</p>
+</div>
+<p>A very similar work is <a href="https://arxiv.org/abs/1911.03584">On the Relationship between Self-Attention and Convolutional Layers (ICLR 2020)</a>. The main differences are</p>
+<ul>
+<li>this work goes further to demonstrate that large scale pre-training makes vanilla transformers competitive with (or even better than) state-of-the-art CNNs.</li>
+<li>this work uses a larger patch size, which makes the model applicable to medium-resolution images as well.</li>
+</ul>
+<h2 id="method">Method</h2>
+<p>ViT follow the original Transformer as closely as possible. <mark>An advantage of this intentionally simple setup is that scalable NLP Transformer architectures - and their efficient implementations - can be used almost out of the box.</mark></p>
+<p><img alt="vit_overview" src="../img/Screenshot%202022-11-02%20at%2011.06.34%20PM.png" /></p>
+<h3 id="vision-transformer-vit">Vision Transformer (ViT)</h3>
+<p>The standard Transformer receives as input a 1D sequence of token embeddings. To handle 2D images, <mark>they reshape the image <span class="arithmatex">\(x \in \mathbb{R}^{H \times W \times C}\)</span> into a sequence of flattened 2D patches <span class="arithmatex">\(N \times \textbf{x}_p \in \mathbb{R}^{P^2 \cdot C}\)</span>, where <span class="arithmatex">\((H, W)\)</span> is the resolution of the original image, <span class="arithmatex">\(C\)</span> is the number of channels, <span class="arithmatex">\((P, P)\)</span> is the resolution of each image patch, and <span class="arithmatex">\(N = HW / P^2\)</span> is the resulting number of patches, which also serves as the effective input sequence length for the Transformer.</mark></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Transformer uses constant latent vector size <span class="arithmatex">\(D\)</span> through all of its layers, so they flatten the patches and map to <span class="arithmatex">\(D\)</span> dimensions with a trainable linear projection. </p>
+</div>
 
 
 
