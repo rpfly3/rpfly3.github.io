@@ -340,6 +340,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../labeling/" class="md-nav__link">
+        Labeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../tracking/" class="md-nav__link">
         Tracking
       </a>
@@ -574,6 +588,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classification-head" class="md-nav__link">
+    Classification Head
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#position-embedding" class="md-nav__link">
+    Position Embedding
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -589,6 +625,20 @@
 
 <h1 id="vision-transformer">Vision Transformer</h1>
 <p><img alt="vit_overview" src="../../../vision_transformer/img/Screenshot%202022-11-02%20at%2011.06.34%20PM.png" /></p>
+<p>The standard Transformer receives as input a 1D sequence of token embeddings. To handle 2D images, <mark>they reshape the image <span class="arithmatex">\(x \in \mathbb{R}^{H \times W \times C}\)</span> into a sequence of flattened 2D patches <span class="arithmatex">\(N \times \textbf{x}_p \in \mathbb{R}^{P^2 \cdot C}\)</span>, where <span class="arithmatex">\((H, W)\)</span> is the resolution of the original image, <span class="arithmatex">\(C\)</span> is the number of channels, <span class="arithmatex">\((P, P)\)</span> is the resolution of each image patch, and <span class="arithmatex">\(N = HW / P^2\)</span> is the resulting number of patches, which also serves as the effective input sequence length for the Transformer.</mark></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Transformer uses constant latent vector size <span class="arithmatex">\(D\)</span> through all of its layers, so they flatten the patches and map to <span class="arithmatex">\(D\)</span> dimensions with a trainable linear projection. </p>
+</div>
+<h2 id="classification-head">Classification Head</h2>
+<p>Similar to BERT's <code>[class]</code> token, they prepend a learnable embedding to the sequence of embedded patches (<span class="arithmatex">\(\textbf{z}^0_0 = \textbf{x}_{class}\)</span>), whose <mark>state at the output of the Transformer encoder (<span class="arithmatex">\(\textbf{z}_L^0\)</span>) serves as the image representation <span class="arithmatex">\(\textbf{y}\)</span>.</mark> Both during pre-training and fine-tuning, a classification head is attached to <span class="arithmatex">\(\textbf{z}_L^0\)</span>. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The classification head is implemented by a MLP with one hidden layer at pre-training time and by a single linear layer at fine-tuning time.</p>
+</div>
+<h2 id="position-embedding">Position Embedding</h2>
+<p>Position embeddings are added to the patch embeddings to retain positional information. <mark>They use standard learnable 1D position embeddings</mark>. </p>
+<p><img alt="model_formula" src="../../../vision_transformer/img/Screenshot%202022-11-03%20at%205.45.33%20PM.png" /></p>
 
 
 

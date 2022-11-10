@@ -340,6 +340,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../labeling/" class="md-nav__link">
+        Labeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../tracking/" class="md-nav__link">
         Tracking
       </a>
@@ -607,6 +621,40 @@
     Vision Transformer (ViT)
   </a>
   
+    <nav class="md-nav" aria-label="Vision Transformer (ViT)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#classification-head" class="md-nav__link">
+    Classification Head
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#position-embedding" class="md-nav__link">
+    Position Embedding
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inductive-bias" class="md-nav__link">
+    Inductive Bias
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hybrid-architecture" class="md-nav__link">
+    Hybrid Architecture
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -671,6 +719,23 @@
 <p class="admonition-title">Note</p>
 <p>The Transformer uses constant latent vector size <span class="arithmatex">\(D\)</span> through all of its layers, so they flatten the patches and map to <span class="arithmatex">\(D\)</span> dimensions with a trainable linear projection. </p>
 </div>
+<h4 id="classification-head">Classification Head</h4>
+<p>Similar to BERT's <code>[class]</code> token, they prepend a learnable embedding to the sequence of embedded patches (<span class="arithmatex">\(\textbf{z}^0_0 = \textbf{x}_{class}\)</span>), whose <mark>state at the output of the Transformer encoder (<span class="arithmatex">\(\textbf{z}_L^0\)</span>) serves as the image representation <span class="arithmatex">\(\textbf{y}\)</span>.</mark> Both during pre-training and fine-tuning, a classification head is attached to <span class="arithmatex">\(\textbf{z}_L^0\)</span>. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The classification head is implemented by a MLP with one hidden layer at pre-training time and by a single linear layer at fine-tuning time.</p>
+</div>
+<h4 id="position-embedding">Position Embedding</h4>
+<p>Position embeddings are added to the patch embeddings to retain positional information. <mark>They use standard learnable 1D position embeddings</mark>. </p>
+<p><img alt="model_formula" src="../img/Screenshot%202022-11-03%20at%205.45.33%20PM.png" /></p>
+<h4 id="inductive-bias">Inductive Bias</h4>
+<p>Vision Transformer has much less image-specific inductive bias than CNNs.</p>
+<ul>
+<li>In CNNs, locality, two-dimensional neighborhood structure, and translation equivariance are baked into each layer throughout the whole model.</li>
+<li>In ViT, only MLP layers are local and translationally equivariant, while the self-attention layers are global. </li>
+</ul>
+<h4 id="hybrid-architecture">Hybrid Architecture</h4>
+<p>As an alternative to raw image patches, the input sequence can be formed from feature maps of a CNN. In this hybrid model, the patch embedding projection <span class="arithmatex">\(\textbf{E}\)</span> is applied to patches extracted from a CNN feature map.</p>
 
 
 

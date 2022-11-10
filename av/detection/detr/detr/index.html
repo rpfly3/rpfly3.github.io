@@ -13,7 +13,7 @@
     
     
       
-        <title>AlexNet - Pengfei's Docs</title>
+        <title>End-to-End Object Detection with Transformers - Pengfei's Docs</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#alexnet" class="md-skip">
+        <a href="#end-to-end-object-detection-with-transformers" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              AlexNet
+              End-to-End Object Detection with Transformers
             
           </span>
         </div>
@@ -588,6 +588,129 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detr" class="md-nav__link">
+    DETR
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-work" class="md-nav__link">
+    Related Work
+  </a>
+  
+    <nav class="md-nav" aria-label="Related Work">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-prediction" class="md-nav__link">
+    Set Prediction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformers-and-parallel-decoding" class="md-nav__link">
+    Transformers and Parallel Decoding
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#object-detection" class="md-nav__link">
+    Object Detection
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-detr-model" class="md-nav__link">
+    The DETR Model
+  </a>
+  
+    <nav class="md-nav" aria-label="The DETR Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#object-detection-set-prediction-loss" class="md-nav__link">
+    Object Detection Set Prediction Loss
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detr-architecture" class="md-nav__link">
+    DETR Architecture
+  </a>
+  
+    <nav class="md-nav" aria-label="DETR Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transformer-encoder" class="md-nav__link">
+    Transformer Encoder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformer-decoder" class="md-nav__link">
+    Transformer Decoder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prediction-feed-forward-networks-ffns" class="md-nav__link">
+    Prediction Feed-forward Networks (FFNs)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auxiliary-decoding-losses" class="md-nav__link">
+    Auxiliary Decoding Losses
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -601,64 +724,84 @@
                   
 
 
-<h1 id="alexnet">AlexNet</h1>
-<h1 id="rich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation">Rich feature hierarchies for accurate object detection and semantic segmentation</h1>
-<h2 id="abstract">Abstract</h2>
-<p>In this paper, they propose a simple and scalable detection algorithm that improves mean average precision (mAP) by more than 30% relative to previous best results on VOC2012 - achieving a mAP of 53.3%.</p>
-<p>The proposed approach combines two key insights:</p>
+<h1 id="end-to-end-object-detection-with-transformers">End-to-End Object Detection with Transformers</h1>
+<p><img alt="paper" src="../img/Screenshot%202022-11-03%20at%205.58.19%20PM.png" /></p>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
 <ul>
-<li>one can apply high-capacity convolutional neural networks (CNNs) to bottom-up region proposals in order to localize and segment objects.</li>
-<li>when labeled training data is scarce, supervised pre-training for an auxiliary task, followed by domain-specific fine-tuning, yields a significant performance boost.</li>
+<li>They present a new method that views object detection as a <strong>direct set prediction problem</strong>. This approach removes the need for many hand-designed components like a non-maximum suppression or anchor generation that explicitly encode prior knowledge about the task.</li>
+<li>The main ingredients of the new framework <strong>DETR</strong> (<strong>DE</strong>tection <strong>TR</strong>ansformer) are a set-based global loss that forces unique predictions via bipartite matching, and a transformer encoder-decoder architecture.</li>
+<li>DETR can be easily generalized to produce panoptic segmentation. </li>
 </ul>
+</div>
 <h2 id="introduction">Introduction</h2>
-<p>AlexNet is the revival of CNN. To what extent do the CNN classification results on ImageNet generalize to object detection results on the PASCAL VOC Challenge?</p>
-<p>They answer this question by bridging the gap between image classification and object detection. To achieve this result they focused on two problems:</p>
+<p>The goal of object detection is to predict a set of bounding boxes and category labels for each object of interest. <mark>Modern detectors address this set prediction task in an indirect way, by defining surrogate regression and classification problems on a large set of proposals, anchors, or window centers.</mark></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Their performance are significantly influenced by post-processing steps to collapse near-duplicate predictions, by the design of the anchor sets and by heuristics that assign target boxes to anchors. </p>
+</div>
+<h3 id="detr">DETR</h3>
+<p>This paper streamline the training pipeline by viewing object detection as a direct set prediction problem. They adopt an encoder-decoder architecture based on transformers. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The self-attention mechanisms of transformers, which explicitly model all pair wise interactions between elements in a sequence, make these architectures particularly suitable for specific constraints of set prediction such as removing duplicate predictions.</p>
+</div>
+<p><img alt="detr_framework" src="../img/Screenshot%202022-11-07%20at%2010.35.48%20PM.png" /></p>
 <ul>
-<li>localizing objects with a deep network</li>
-<li>training a high-capacity with only a small quantity of annotated detection data</li>
+<li>The DETR predicts all objects at once, and is trained end-to-end with a set loss function which performs bipartite matching between predicted and ground-truth objects.</li>
+<li>Compared to most previous work on direct set prediction, the main features of DETR are the conjunction of the bipartite matching loss and transformers with (non-autoregressive) parallel decoding.</li>
 </ul>
-<p>Unlike image classification, detection requires localizing objects within an image. The potential solutions include</p>
+<p>Training settings for DETR differ from standard object detectors in multiple ways. The new model requires extra-long training schedule and benefits from auxiliary decoding losses in the transformer.</p>
+<h2 id="related-work">Related Work</h2>
+<h3 id="set-prediction">Set Prediction</h3>
+<p><mark>In all cases, the loss function should be invariant by a permutation of the predictions.</mark> The usual solution is to design a loss based on the Hungarian algorithm, to find a bipartite matching between ground-truth and prediction. This enforces permutation-invariance, and guarantees that each target element has a unique match. </p>
+<h3 id="transformers-and-parallel-decoding">Transformers and Parallel Decoding</h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>One of the main advantages of attention-based models is their global computations and perfect memory, which makes them more suitable than RNNs on long sequences. </p>
+</div>
+<p>Transformers were first used in auto-regressive models, following early sequence-to-sequence models, generating output tokens one by one. However, the prohibitive inference cost (proportional to output length, and hard to batch) lead to the development of parallel sequence generation.</p>
+<h3 id="object-detection">Object Detection</h3>
+<p>Most modern object detection methods make predictions make predictions relative to some initial guesses. <mark>Recent work demonstrate that the final performance of these systems heavily depends on the exact way these initial guesses are set.</mark></p>
+<h2 id="the-detr-model">The DETR Model</h2>
+<p>Two ingredients are essential for direct set predictions in detection:</p>
+<ol>
+<li>a set prediction loss that forces unique matching between predicted and ground truth boxes.</li>
+<li>an architecture that predicts (in a single pass) a set of objects and models their relation.</li>
+</ol>
+<h3 id="object-detection-set-prediction-loss">Object Detection Set Prediction Loss</h3>
+<p>DETR infers a fixed-size set of <span class="arithmatex">\(N\)</span> predictions, in a single pass through the decoder, where <span class="arithmatex">\(N\)</span> is set to be significantly larger than the typical number of objects in an image. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>One of the main difficulties of training is to score predicted objects (class, position, size) with respect to the ground truth.</p>
+</div>
+<p>The proposed loss produces an optimal bipartite matching between predicted and ground truth objects, and then optimize object-specific (bounding box) losses. The matching cost takes into account both the class prediction and the similarity of predicted and ground truth boxes. </p>
 <ul>
-<li>framing localization as regression problem. This has been shown not working well.</li>
-<li>building a sliding-widow detector. However, units high up in CNN have very large receptive fields and strides in the input image, which makes precise localization within the sliding-window paradigm an open technical challenge.</li>
+<li>In the bipartite graph matching, they use probabilities for matching classes. But they use log-probabilities in the Hungarian loss. </li>
+<li>The most commonly-used l1 loss will have different scales for small and large boxes even if relative errors are similar. To mitigate this issue they use a linear combination of the l1 loss and the generalized IoU loss. </li>
 </ul>
-<p>They solve the CNN localization problem by operating within the <strong>recognition using regions</strong> paradigm, which has been successful for both object detection and semantic segmentation.</p>
+<h3 id="detr-architecture">DETR Architecture</h3>
+<p><img alt="detr_architecture" src="../img/Screenshot%202022-11-07%20at%2011.33.35%20PM.png" /></p>
+<h4 id="transformer-encoder">Transformer Encoder</h4>
+<p>The encoder expects a sequence as input, hence they collapse the spatial dimensions of <span class="arithmatex">\(z_0\)</span> into one dimension, resulting a <span class="arithmatex">\(d \times HW\)</span> feature map. </p>
+<h4 id="transformer-decoder">Transformer Decoder</h4>
+<p>The difference with the original transformer is that the new model decodes the <span class="arithmatex">\(N\)</span> objects in parallel at each decoder layer, while the original transformer uses an auto-regressive model that predicts the output sequence one element at a time.</p>
+<p>Since the decoder is also permutation-invariant, the <span class="arithmatex">\(N\)</span> input embeddings must be different to produce different results. <mark>These input embeddings are learnt positional encodings that they refer to as object queries, and similarly to the encoder, they add them to the input of each attention layer.</mark></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <ul>
-<li>generates around 2000 category-independent region proposals for the input image</li>
-<li>extracts a fixed-length feature vector from each proposal using a CNN</li>
-<li>Classifies each region with category-specific linear SVMs.</li>
+<li>The <span class="arithmatex">\(N\)</span> object queries are transformed into an output embedding by the decoder in parallel.</li>
+<li>They are then independently decoded into box coordinates and class labels by a feed forward network, resulting <span class="arithmatex">\(N\)</span> final predictions.</li>
 </ul>
-<p>They use a simple technique (<strong>afine image warping</strong>) to compute a <strong>fixed-size CNN input</strong> from each region proposal, regardless of the region's shape.</p>
-<p>The second challenge faced in detection is that labeled data is scarce and the amount currently available is insufficient for training a large CNN.</p>
+</div>
+<h4 id="prediction-feed-forward-networks-ffns">Prediction Feed-forward Networks (FFNs)</h4>
+<p>The final prediction is computed by a 3-layer perceptron with ReLU activation function and hidden dimension <span class="arithmatex">\(d\)</span>, and a linear projection layer.</p>
+<h4 id="auxiliary-decoding-losses">Auxiliary Decoding Losses</h4>
+<p><mark>They found it is helpful to use auxiliary losses in decoder during training, especially to help the model output the correct number of objects of each class.</mark></p>
 <ul>
-<li>The conventional solution to this problem is to use <strong>unsupervised pre-training</strong>, followed by supervised fine-tuning</li>
-<li>This paper shows that <strong>supervised pre-training</strong> on a large auxiliary dataset (ILSVRC), followed by domain specific fine-tuning on a small dataset (PASCAL), is an effective paradigm for training high-capacity CNNs when data is scarce. (<strong>Transferring Learning</strong>)</li>
-</ul>
-<blockquote>
-<p>In DeCAF, the author shows that AlexNet can be used as a blcakbox feature extractor, yielding excellent performance on several recognition tasks including scene classification, fine-grained sub-categorization, and domain adaption.
-</p>
-</blockquote>
-<h2 id="object-detection-with-r-cnn">Object detection with R-CNN</h2>
-<h3 id="module-design">Module design</h3>
-<h3 id="region-proposals">Region proposals</h3>
-<p>R-CNN is agnostic to the particular region proposal method, however, they use selective search to enable a controlled comparison with prior detection work.</p>
-<h3 id="feature-extraction">Feature extraction</h3>
-<p>They extract a 4096-dimensional feature vector from each region proposal using the Caffe implementation of AlexNet. Features are computed by forward propagating a <strong>mean-subtracted 227 x 227 RGB image</strong> through five convolutional layers and two fully connected layers.</p>
-<p>Regardless of the size or aspect ratio of the candidate region, they warp all pixels in a tight bounding box around it to the required size. Prior to warping, they dilate the tight bounding box so that at the warped size there are exactly <span class="arithmatex">\(<span class="arithmatex">\(p\)</span>\)</span> pixels of warped image context around the original box (they use <span class="arithmatex">\(<span class="arithmatex">\(p = 16\)</span>\)</span>).</p>
-<p><strong>Object proposal transformations</strong>:</p>
-<ul>
-<li>tightest square with context: enclosing each object proposal inside the tighest square and then scales (isotropically) the image contained in that square to the CNN input size.</li>
-<li>tightest square without context: excluding the image content that surrounds the original object proposal.</li>
-<li>warp: anisotropically scales each object proposal to the CNN input size.</li>
-</ul>
-<p>Obviously more alternatives are possible.</p>
-<h3 id="test-time-detection">Test-time detection</h3>
-<p>At test time,</p>
-<ul>
-<li>run selective search on the test image to extract around 2000 region proposals</li>
-<li>warp each proposals and forward propagate it through the CNN in order to compute features</li>
-<li>for each class, they score each extracted feature vector using the SVM trained for that class.</li>
-<li>Given all scored regions in an image, they apply a greedy NMS (for each class independently) that rejects a region if it has an IoU overlap with a higher scoring selected region larger than a learned threshold.</li>
+<li>They add prediction FNNs and Hungarian loss after each decoder layer.</li>
+<li>All prediction FFNs share their parameters.</li>
+<li>They use an additional shared layer-norm to normalize the input to the prediction FFNs from different decoder layers.</li>
 </ul>
 
 
