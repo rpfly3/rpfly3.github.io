@@ -13,7 +13,7 @@
     
     
       
-        <title>BEVFormer: Learning Bird's-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers - Pengfei's Docs</title>
+        <title>YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors - Pengfei's Docs</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#bevformer-learning-birds-eye-view-representation-from-multi-camera-images-via-spatiotemporal-transformers" class="md-skip">
+        <a href="#yolov7-trainable-bag-of-freebies-sets-new-state-of-the-art-for-real-time-object-detectors" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              BEVFormer: Learning Bird's-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers
+              YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors
             
           </span>
         </div>
@@ -602,16 +602,152 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#bevformer" class="md-nav__link">
-    BEVFormer
+  <a href="#related-work" class="md-nav__link">
+    Related Work
   </a>
   
-    <nav class="md-nav" aria-label="BEVFormer">
+    <nav class="md-nav" aria-label="Related Work">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#overall-architecture" class="md-nav__link">
-    Overall Architecture
+  <a href="#real-time-object-detectors" class="md-nav__link">
+    Real-time Object Detectors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-re-parameterization" class="md-nav__link">
+    Model Re-parameterization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-scaling" class="md-nav__link">
+    Model Scaling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    Architecture
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extended-efficient-layer-aggregation-networks" class="md-nav__link">
+    Extended Efficient Layer Aggregation Networks
+  </a>
+  
+    <nav class="md-nav" aria-label="Extended Efficient Layer Aggregation Networks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#memory-access-cost" class="md-nav__link">
+    Memory Access Cost
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activation" class="md-nav__link">
+    Activation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vovnet" class="md-nav__link">
+    VoVNet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cspvovnet" class="md-nav__link">
+    CSPVovNet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elan" class="md-nav__link">
+    ELAN
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-scaling-for-concatenation-based-models" class="md-nav__link">
+    Model Scaling for Concatenation-based Models
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trainable-bag-of-freebies" class="md-nav__link">
+    Trainable Bag-of-freebies
+  </a>
+  
+    <nav class="md-nav" aria-label="Trainable Bag-of-freebies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#planned-re-parameterized-convolution" class="md-nav__link">
+    Planned Re-parameterized Convolution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coarse-for-auxiliary-and-fine-for-lead-loss" class="md-nav__link">
+    Coarse for Auxiliary and Fine For Lead Loss
+  </a>
+  
+    <nav class="md-nav" aria-label="Coarse for Auxiliary and Fine For Lead Loss">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#label-assignment" class="md-nav__link">
+    Label Assignment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lead-head-guided-label-assigner" class="md-nav__link">
+    Lead Head Guided Label Assigner
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-trainable-bag-of-freebies" class="md-nav__link">
+    Other trainable bag-of-freebies
   </a>
   
 </li>
@@ -636,47 +772,112 @@
                   
 
 
-<h1 id="bevformer-learning-birds-eye-view-representation-from-multi-camera-images-via-spatiotemporal-transformers">BEVFormer: Learning Bird's-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers</h1>
-<p><img alt="bevformer" src="../img/Screenshot%202022-11-14%20at%2011.14.44%20PM.png" /></p>
+<h1 id="yolov7-trainable-bag-of-freebies-sets-new-state-of-the-art-for-real-time-object-detectors">YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors</h1>
+<p><img alt="yolov7" src="../img/Screenshot%202022-11-16%20at%2012.27.01%20AM.png" /></p>
 <div class="admonition abstract">
 <p class="admonition-title">Abstract</p>
-<ul>
-<li>BEVFormer learns unified BEV representations with spatiotemporal transformers to support multiple autonomous driving perception tasks.</li>
-<li>
-<p>BEVFormer exploits both spatial and temporal information by interacting with spatial and temporal space through predefined grid-shaped BEV queries.</p>
-<ul>
-<li>To aggregate spatial information, they design <strong>spatial cross-attention</strong> that each BEV query extracts the spatial features from the regions of interest across camera views.</li>
-<li>For temporal information, they propose <strong>temporal self-attention</strong> to recurrently fuse the history BEV information.</li>
-</ul>
-</li>
-</ul>
+<p>YOLOv7 surpasses all known object detectors in both speed and accuracy.</p>
 </div>
 <h2 id="introduction">Introduction</h2>
-<p>Visual perception of the surrounding scene in autonomous driving is expected to predict the 3D bounding boxes or the semantic maps from 2D cues given by multiple cameras. Although previous map segmentation methods demonstrate BEV's effectiveness, BEV-based approaches have not shown significant advantage over other paradigm in 3D object detections.</p>
+<p>The computing devices that execute real-time object detection is usually some mobile CPU or GPU, as well as various neural processing units (NPU) developed by major manufacturers. The proposed real-time object detector mainly support mobile GPU and GPU devices from the edge to the cloud.</p>
+<p>The development direction of the proposed methods in this paper are different from that of the current mainstream real-time object detectors. Their focus is on some optimized modules and optimization methods which may strengthen the training cost for improving the accuracy of object detection, but without increasing the inference cost.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>They call the proposed modules and optimization methods trainable bag-of-freebies.</p>
+</div>
+<p><mark>Recently, model re-parameterization and dynamic label assignment have become important topics in network training and object detection.</mark> Mainly after the above new concepts are proposed, the training of object detector evolves many new issues. In this paper, they present some of the new issues and devise effective methods to address them.</p>
+<h2 id="related-work">Related Work</h2>
+<h3 id="real-time-object-detectors">Real-time Object Detectors</h3>
+<p>Currently state-of-the-art real-time object detectors are mainly based on YOLO and FCOS. Being able to become a state-of-the-art real-time object detector usually requires the following characteristics:</p>
+<ul>
+<li>A faster and stronger network architecture</li>
+<li>A more effective feature integration method</li>
+<li>A more accurate detection method</li>
+<li>A more robust loss function</li>
+<li>A more effective label assignment method</li>
+<li>A more efficient training method</li>
+</ul>
+<h3 id="model-re-parameterization">Model Re-parameterization</h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The underlying reason is that the 3D object detection task requires strong BEV features to support accurate 3D bounding box prediction, but generating BEV from the 2D planes is ill-posed.</p>
+<p>Model re-parametrization techniques merge multiple computational modules into one at inference stage. </p>
 </div>
-<p><strong>Motivations</strong></p>
+<p>The model re-parameterization technique can be regarded as an ensemble technique, and we can divide it into two categories, i.e., module-level ensemble and model-level ensemble.</p>
+<p>There are two common practices for model-level re-parameterization to obtain the final inference model.</p>
 <ul>
-<li>A popular BEV framework that generates BEV features is based on depth information, but this paradigm is sensitive to the accuracy of depth values or the depth distributions. <mark>The detection performance of BEV-based methods is thus subject to compounding errors, and inaccurate BEV features can seriously hurt the final performance.</mark></li>
-<li>The significant challenges are that autonomous driving is time-critical and objects in the scene change rapidly, and thus simply stacking BEV features of cross timestamps bring extra computational cost and interference information, which might not be ideal.</li>
+<li>Train multiple identical models with different training data, and then average the weights of multiple trained models.</li>
+<li>Perform a weighted average of the weights of models at different iteration number.</li>
 </ul>
-<p><strong>BEVFormer Overview</strong></p>
-<p><img alt="bevformer_overview" src="../img/Screenshot%202022-11-14%20at%2011.39.30%20PM.png" /></p>
-<p>BEVFormer contains three key designs:</p>
-<ol>
-<li>grid-shaped BEV queries to fuse spatial and temporal features via attention mechanisms flexibly.</li>
-<li>spatial cross-attention module to aggregate the spatial features from multi-camera images.</li>
-<li>temporal self-attention module to extract temporal information from histogram BEV features, which benefits the velocity estimation of moving objects and the detection of heavily occluded objects, while brining negligible computational overhead.</li>
-</ol>
-<p>With the unified features generated by BEVFormer, the model can collaborate with different task-specific heads such as Deformable DETR and mask decoder, for end-to-end 3D object detection and map segmentation.</p>
-<p><strong>Key Contributions</strong></p>
-<p><mark>BEVFromer, a spatiotemporal transformer encoder that projects multi-camera and/or timestamp input to BEV representations.</mark></p>
-<h2 id="bevformer">BEVFormer</h2>
-<p><img alt="bevformer_architecture" src="../img/Screenshot%202022-11-14%20at%2011.54.24%20PM.png" /></p>
-<h3 id="overall-architecture">Overall Architecture</h3>
-<p>BEVFormer has 6 encoder layers, each of which follows the conventional structure of transformers, except for three tailored designs, namely BEV queries, spatial cross-attention, and temporal self-attention.</p>
+<p>Module-level re-parameterization is a more popular research issue recently. <mark>This type of method splits a module into multiple identical or different module branches during training and integrates multiple branched modules into a completely equivalent module during inference.</mark> </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Not all proposed re-parameterized module can be perfectly applied to different architectures.</p>
+</div>
+<h3 id="model-scaling">Model Scaling</h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Model scaling is a way to scale up or down an already designed model and make it fit in different computing devices. </p>
+</div>
+<p>The model scaling method usually uses different scaling factors, such as resolution (size of input image), depth (number of layer), width (number of chanel), and stage (number of feature pyramid), so as to achieve a good trade-off for the amount of network parameters, computation, inference speed, and accuracy. </p>
+<h2 id="architecture">Architecture</h2>
+<h3 id="extended-efficient-layer-aggregation-networks">Extended Efficient Layer Aggregation Networks</h3>
+<p>In most of the literature on designing the efficient architectures, the main considerations are no more than the number of parameters, the amount of computation, and the computational density. </p>
+<p><img alt="layer_aggregation" src="../img/Screenshot%202022-11-26%20at%208.19.19%20PM.png" /></p>
+<h4 id="memory-access-cost">Memory Access Cost</h4>
+<p><a href="https://arxiv.org/abs/1807.11164">ShuffleNet v2</a></p>
+<ul>
+<li>Input/Output channel ration</li>
+<li>Number of branches of the architecture</li>
+<li>Element-wise operation</li>
+</ul>
+<h4 id="activation">Activation</h4>
+<p><a href="https://arxiv.org/abs/2103.06877">Fast and Accurate Model Scaling</a></p>
+<ul>
+<li>Number of elements in the output tensors of the convolution layers.</li>
+</ul>
+<h4 id="vovnet">VoVNet</h4>
+<p><a href="https://arxiv.org/abs/1904.09730">An Energy and GPU-Computation Efficient Backbone Network for Real-Time Object Detection</a></p>
+<h4 id="cspvovnet">CSPVovNet</h4>
+<p><a href="https://arxiv.org/abs/2011.08036">Scaled-YOLOv4: Scaling Cross Stage Partial Network</a></p>
+<p>In addition to considering the aforementioned basic designing concerns, the architecture of CSPVoVNet also analyzes the gradient path, in order to enable the weights of different layers to learn more diverse features. The gradient analysis approach described above makes inferences faster and more accurate.</p>
+<h4 id="elan">ELAN</h4>
+<p><a href="https://arxiv.org/abs/2211.04800">Designing Network Design Strategies Through Gradient Path Analysis</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By controlling the longest gradient path, a deep network can learn and converge efficiently.</p>
+</div>
+<p>Regardless of the gradient path length and the stacking number of computational blocks in large-scale ELAN, it has reached a stable state. If more computational blocks are stacked un-limitedly, this stable state may be destroyed, and the parameter utilization rate will decrease. <mark>The proposed E-ELAN uses expand, shuffle, merge cardinality to achieve the ability to continuously enhance the learning ability of the network without destroying the original gradient path.</mark></p>
+<h3 id="model-scaling-for-concatenation-based-models">Model Scaling for Concatenation-based Models</h3>
+<p>The main purpose of model scaling is to adjust some attributes of the model and generate models of different scales to meet the needs of different inference speeds. </p>
+<h2 id="trainable-bag-of-freebies">Trainable Bag-of-freebies</h2>
+<h3 id="planned-re-parameterized-convolution">Planned Re-parameterized Convolution</h3>
+<p><mark>Although RepConv has achieved excellent performance on the VGG, when we directly apply it to ResNet and DenseNet and other architectures, its accuracy will be significantly reduced.</mark></p>
+<ul>
+<li>They use gradient flow propagation paths to analyze how re-parameterized convolution should be combined with different network.</li>
+<li>They also designed planned re-parameterized convolution accordingly.</li>
+</ul>
+<p><img alt="planed_reparameterization" src="../img/Screenshot%202022-11-26%20at%209.21.58%20PM.png" /></p>
+<p>They found that the identity connection in RepConv destroys the residual in ResNet and the concatenation in DenseNet, which provides more diversity of gradients for different feature maps.</p>
+<h3 id="coarse-for-auxiliary-and-fine-for-lead-loss">Coarse for Auxiliary and Fine For Lead Loss</h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Deep supervision is a technique that is often used in training deep networks. </p>
+</div>
+<p>Its main concept is to add extra auxiliary head in the middle layers of the network, and the shallow network weights with assistant loss as the guide.</p>
+<p><img alt="auxiliary_lead_loss" src="../img/Screenshot%202022-11-26%20at%209.32.15%20PM.png" /></p>
+<h4 id="label-assignment">Label Assignment</h4>
+<ul>
+<li>In the past, in the training of deep network, label assignment usually refers directly to the ground truth and generate hard label according to the given rules. </li>
+<li>In recent years, if we take object detection as an example, researchers often use the quality and distribution of prediction output by the network, and then consider together with the ground truth to use some calculation and optimization methods to generate a reliable soft label.</li>
+</ul>
+<h4 id="lead-head-guided-label-assigner">Lead Head Guided Label Assigner</h4>
+<p>Lead head guided label assigner is mainly calculated based on the prediction result of the lead head and the ground truth, and generate soft label through the optimization process. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The reason to do this is because lead head has a relatively strong learning capability, so the soft label generated from it should be more representative of the distribution and correlation between the source data and the target.</p>
+</div>
+<p>By letting the shallower auxiliary head directly learn the information that lead head has learned, lead head will be more able to focus on learning residual information that has not yet been learned.</p>
+<h3 id="other-trainable-bag-of-freebies">Other trainable bag-of-freebies</h3>
 
 
 

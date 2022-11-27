@@ -13,7 +13,7 @@
     
     
       
-        <title>BEVFormer: Learning Bird's-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers - Pengfei's Docs</title>
+        <title>YOLOv4: Optimal Speed and Accuracy of Object Detection - Pengfei's Docs</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#bevformer-learning-birds-eye-view-representation-from-multi-camera-images-via-spatiotemporal-transformers" class="md-skip">
+        <a href="#yolov4-optimal-speed-and-accuracy-of-object-detection" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              BEVFormer: Learning Bird's-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers
+              YOLOv4: Optimal Speed and Accuracy of Object Detection
             
           </span>
         </div>
@@ -588,41 +588,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    Introduction
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bevformer" class="md-nav__link">
-    BEVFormer
-  </a>
-  
-    <nav class="md-nav" aria-label="BEVFormer">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#overall-architecture" class="md-nav__link">
-    Overall Architecture
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -636,47 +601,7 @@
                   
 
 
-<h1 id="bevformer-learning-birds-eye-view-representation-from-multi-camera-images-via-spatiotemporal-transformers">BEVFormer: Learning Bird's-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers</h1>
-<p><img alt="bevformer" src="../img/Screenshot%202022-11-14%20at%2011.14.44%20PM.png" /></p>
-<div class="admonition abstract">
-<p class="admonition-title">Abstract</p>
-<ul>
-<li>BEVFormer learns unified BEV representations with spatiotemporal transformers to support multiple autonomous driving perception tasks.</li>
-<li>
-<p>BEVFormer exploits both spatial and temporal information by interacting with spatial and temporal space through predefined grid-shaped BEV queries.</p>
-<ul>
-<li>To aggregate spatial information, they design <strong>spatial cross-attention</strong> that each BEV query extracts the spatial features from the regions of interest across camera views.</li>
-<li>For temporal information, they propose <strong>temporal self-attention</strong> to recurrently fuse the history BEV information.</li>
-</ul>
-</li>
-</ul>
-</div>
-<h2 id="introduction">Introduction</h2>
-<p>Visual perception of the surrounding scene in autonomous driving is expected to predict the 3D bounding boxes or the semantic maps from 2D cues given by multiple cameras. Although previous map segmentation methods demonstrate BEV's effectiveness, BEV-based approaches have not shown significant advantage over other paradigm in 3D object detections.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The underlying reason is that the 3D object detection task requires strong BEV features to support accurate 3D bounding box prediction, but generating BEV from the 2D planes is ill-posed.</p>
-</div>
-<p><strong>Motivations</strong></p>
-<ul>
-<li>A popular BEV framework that generates BEV features is based on depth information, but this paradigm is sensitive to the accuracy of depth values or the depth distributions. <mark>The detection performance of BEV-based methods is thus subject to compounding errors, and inaccurate BEV features can seriously hurt the final performance.</mark></li>
-<li>The significant challenges are that autonomous driving is time-critical and objects in the scene change rapidly, and thus simply stacking BEV features of cross timestamps bring extra computational cost and interference information, which might not be ideal.</li>
-</ul>
-<p><strong>BEVFormer Overview</strong></p>
-<p><img alt="bevformer_overview" src="../img/Screenshot%202022-11-14%20at%2011.39.30%20PM.png" /></p>
-<p>BEVFormer contains three key designs:</p>
-<ol>
-<li>grid-shaped BEV queries to fuse spatial and temporal features via attention mechanisms flexibly.</li>
-<li>spatial cross-attention module to aggregate the spatial features from multi-camera images.</li>
-<li>temporal self-attention module to extract temporal information from histogram BEV features, which benefits the velocity estimation of moving objects and the detection of heavily occluded objects, while brining negligible computational overhead.</li>
-</ol>
-<p>With the unified features generated by BEVFormer, the model can collaborate with different task-specific heads such as Deformable DETR and mask decoder, for end-to-end 3D object detection and map segmentation.</p>
-<p><strong>Key Contributions</strong></p>
-<p><mark>BEVFromer, a spatiotemporal transformer encoder that projects multi-camera and/or timestamp input to BEV representations.</mark></p>
-<h2 id="bevformer">BEVFormer</h2>
-<p><img alt="bevformer_architecture" src="../img/Screenshot%202022-11-14%20at%2011.54.24%20PM.png" /></p>
-<h3 id="overall-architecture">Overall Architecture</h3>
-<p>BEVFormer has 6 encoder layers, each of which follows the conventional structure of transformers, except for three tailored designs, namely BEV queries, spatial cross-attention, and temporal self-attention.</p>
+<h1 id="yolov4-optimal-speed-and-accuracy-of-object-detection">YOLOv4: Optimal Speed and Accuracy of Object Detection</h1>
 
 
 

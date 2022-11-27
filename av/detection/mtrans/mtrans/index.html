@@ -13,7 +13,7 @@
     
     
       
-        <title>BEVFormer: Learning Bird's-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers - Pengfei's Docs</title>
+        <title>Multimodal Transformer for Automatic 3D Annotation and Object Detection - Pengfei's Docs</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#bevformer-learning-birds-eye-view-representation-from-multi-camera-images-via-spatiotemporal-transformers" class="md-skip">
+        <a href="#multimodal-transformer-for-automatic-3d-annotation-and-object-detection" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              BEVFormer: Learning Bird's-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers
+              Multimodal Transformer for Automatic 3D Annotation and Object Detection
             
           </span>
         </div>
@@ -602,16 +602,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#bevformer" class="md-nav__link">
-    BEVFormer
+  <a href="#mtrans-for-automatic-annotation" class="md-nav__link">
+    MTrans for Automatic Annotation
   </a>
   
-    <nav class="md-nav" aria-label="BEVFormer">
+    <nav class="md-nav" aria-label="MTrans for Automatic Annotation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#overall-architecture" class="md-nav__link">
-    Overall Architecture
+  <a href="#data-preparation" class="md-nav__link">
+    Data Preparation
   </a>
   
 </li>
@@ -636,47 +636,34 @@
                   
 
 
-<h1 id="bevformer-learning-birds-eye-view-representation-from-multi-camera-images-via-spatiotemporal-transformers">BEVFormer: Learning Bird's-Eye-View Representation from Multi-Camera Images via Spatiotemporal Transformers</h1>
-<p><img alt="bevformer" src="../img/Screenshot%202022-11-14%20at%2011.14.44%20PM.png" /></p>
+<h1 id="multimodal-transformer-for-automatic-3d-annotation-and-object-detection">Multimodal Transformer for Automatic 3D Annotation and Object Detection</h1>
+<p><img alt="mtrans" src="../img/Screenshot%202022-11-15%20at%2012.18.01%20AM.png" /></p>
 <div class="admonition abstract">
 <p class="admonition-title">Abstract</p>
 <ul>
-<li>BEVFormer learns unified BEV representations with spatiotemporal transformers to support multiple autonomous driving perception tasks.</li>
-<li>
-<p>BEVFormer exploits both spatial and temporal information by interacting with spatial and temporal space through predefined grid-shaped BEV queries.</p>
-<ul>
-<li>To aggregate spatial information, they design <strong>spatial cross-attention</strong> that each BEV query extracts the spatial features from the regions of interest across camera views.</li>
-<li>For temporal information, they propose <strong>temporal self-attention</strong> to recurrently fuse the history BEV information.</li>
-</ul>
-</li>
+<li>To automate the annotation and facilitate the production of various customized datasets, they propose an end-to-end multimodal transformer (MTrans) autolabeler, which leverages both LiDAR scans and images to generate precise 3D box annotations from weak 2D bounding boxes.</li>
+<li>To alleviate the pervasive sparsity problem that hinders existing autolabelers, MTrans densifies the sparse point clouds by generating new 3D points based on 2D image information.</li>
+<li>With a multi-task design, MTrans segments the foreground/background, densifies LiDAR point clouds, and regresses 3D boxes simultaneously.</li>
 </ul>
 </div>
 <h2 id="introduction">Introduction</h2>
-<p>Visual perception of the surrounding scene in autonomous driving is expected to predict the 3D bounding boxes or the semantic maps from 2D cues given by multiple cameras. Although previous map segmentation methods demonstrate BEV's effectiveness, BEV-based approaches have not shown significant advantage over other paradigm in 3D object detections.</p>
+<p>Compared with 3D annotations, 2D bounding boxes are much easier to obtain. Hence, they investigate the generation of 3D annotations from weak 2D boxes. Even though the problem domain is narrowed down by the weak 2D annotations, it is still challenging to generate a 3D box if the points are too sparse, due to the ambiguity in orientation and scale. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The underlying reason is that the 3D object detection task requires strong BEV features to support accurate 3D bounding box prediction, but generating BEV from the 2D planes is ill-posed.</p>
+<p>The sparsity problem remains a fundamental challenge for automatic annotations.</p>
 </div>
-<p><strong>Motivations</strong></p>
+<p>Besides the sparsity issue, point clouds lack color information. Fortunately, images provide dense fine-grid RGB information, which is an effective complement to the sparse point clouds. Motivated by this, they investigate point cloud enrichment with image information. </p>
+<p><img alt="key_idea" src="../img/Screenshot%202022-11-15%20at%2010.22.33%20PM.png" /></p>
+<p>3D LiDAR points can be projected onto the image, and therefore an image pixel's 3D coordinates can be estimated by referring to the context LiDAR points, based on their 2D spatial and semantic relationships. This way, new 3D points can be generated from 2D pixels, and hence densify the sparse point cloud.</p>
 <ul>
-<li>A popular BEV framework that generates BEV features is based on depth information, but this paradigm is sensitive to the accuracy of depth values or the depth distributions. <mark>The detection performance of BEV-based methods is thus subject to compounding errors, and inaccurate BEV features can seriously hurt the final performance.</mark></li>
-<li>The significant challenges are that autonomous driving is time-critical and objects in the scene change rapidly, and thus simply stacking BEV features of cross timestamps bring extra computational cost and interference information, which might not be ideal.</li>
+<li>In order to leverage the dense image information to enrich sparse point clouds, they present the multimodal self-attention module, which efficiently extracts multimodal 2D and 3D features, modeling points' geometric and semantic relationships.</li>
+<li>To train MTrans, they introduce a multi-task design, so that it learns to generate new 3D points to reduce the sparsity of point clouds while predicting 3D boxes.</li>
+<li>Moreover, to exploit unlabelled data for the point generation task, a mask-and-predict self-supervision strategy can be carried out.</li>
 </ul>
-<p><strong>BEVFormer Overview</strong></p>
-<p><img alt="bevformer_overview" src="../img/Screenshot%202022-11-14%20at%2011.39.30%20PM.png" /></p>
-<p>BEVFormer contains three key designs:</p>
-<ol>
-<li>grid-shaped BEV queries to fuse spatial and temporal features via attention mechanisms flexibly.</li>
-<li>spatial cross-attention module to aggregate the spatial features from multi-camera images.</li>
-<li>temporal self-attention module to extract temporal information from histogram BEV features, which benefits the velocity estimation of moving objects and the detection of heavily occluded objects, while brining negligible computational overhead.</li>
-</ol>
-<p>With the unified features generated by BEVFormer, the model can collaborate with different task-specific heads such as Deformable DETR and mask decoder, for end-to-end 3D object detection and map segmentation.</p>
-<p><strong>Key Contributions</strong></p>
-<p><mark>BEVFromer, a spatiotemporal transformer encoder that projects multi-camera and/or timestamp input to BEV representations.</mark></p>
-<h2 id="bevformer">BEVFormer</h2>
-<p><img alt="bevformer_architecture" src="../img/Screenshot%202022-11-14%20at%2011.54.24%20PM.png" /></p>
-<h3 id="overall-architecture">Overall Architecture</h3>
-<p>BEVFormer has 6 encoder layers, each of which follows the conventional structure of transformers, except for three tailored designs, namely BEV queries, spatial cross-attention, and temporal self-attention.</p>
+<h2 id="mtrans-for-automatic-annotation">MTrans for Automatic Annotation</h2>
+<p><img alt="overview" src="../img/Screenshot%202022-11-15%20at%2010.59.11%20PM.png" /></p>
+<h3 id="data-preparation">Data Preparation</h3>
+<p><mark>MTrans generates one 3D bounding box for each object in a weak 2D box.</mark></p>
 
 
 
