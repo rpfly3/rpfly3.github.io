@@ -8,19 +8,19 @@
       
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
     
     
       
-        <title>Detection - Pengfei's Docs</title>
+        <title>YOLOv3: An Incremental Improvement - Pengfei's Docs</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.20d9efc8.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cbb835fc.min.css">
         
           
           
@@ -41,7 +41,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#detection" class="md-skip">
+        <a href="#yolov3-an-incremental-improvement" class="md-skip">
           Skip to content
         </a>
       
@@ -82,7 +82,7 @@
 
 <header class="md-header md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Pengfei&#39;s Docs" class="md-header__button md-logo" aria-label="Pengfei's Docs" data-md-component="logo">
+    <a href="../../../.." title="Pengfei&#39;s Docs" class="md-header__button md-logo" aria-label="Pengfei's Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.5 9V1.5h-3V9h-3V1.5h-3V9h-3V1.5H4.65V9H3v1.5h18V9h-1.5m0 4.5h-3V21h-3v-7.5h-3V21h-3v-7.5H4.65V21H3v1.5h18V21h-1.5v-7.5Z"/></svg>
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Detection
+              YOLOv3: An Incremental Improvement
             
           </span>
         </div>
@@ -158,7 +158,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../.." class="md-tabs__link">
+    <a href="../../../.." class="md-tabs__link">
       Home
     </a>
   </li>
@@ -166,8 +166,6 @@
       
         
   
-  
-    
   
 
 
@@ -180,7 +178,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../papers/" class="md-tabs__link md-tabs__link--active">
+      <a href="../../../papers/" class="md-tabs__link">
         Documents
       </a>
     </li>
@@ -195,7 +193,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../about/" class="md-tabs__link">
+    <a href="../../../../about/" class="md-tabs__link">
       About
     </a>
   </li>
@@ -228,7 +226,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Pengfei&#39;s Docs" class="md-nav__button md-logo" aria-label="Pengfei's Docs" data-md-component="logo">
+    <a href="../../../.." title="Pengfei&#39;s Docs" class="md-nav__button md-logo" aria-label="Pengfei's Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.5 9V1.5h-3V9h-3V1.5h-3V9h-3V1.5H4.65V9H3v1.5h18V9h-1.5m0 4.5h-3V21h-3v-7.5h-3V21h-3v-7.5H4.65V21H3v1.5h18V21h-1.5v-7.5Z"/></svg>
@@ -247,7 +245,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -260,14 +258,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
       
       
@@ -288,14 +284,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
       
       
       
@@ -318,7 +312,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../papers/" class="md-nav__link">
+      <a href="../../../papers/" class="md-nav__link">
         Papers
       </a>
     </li>
@@ -330,59 +324,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Detection
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
         Detection
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#modules" class="md-nav__link">
-    Modules
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    Architecture
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -394,7 +340,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../labeling/" class="md-nav__link">
+      <a href="../../../labeling/" class="md-nav__link">
         Labeling
       </a>
     </li>
@@ -408,7 +354,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tracking/" class="md-nav__link">
+      <a href="../../../tracking/" class="md-nav__link">
         Tracking
       </a>
     </li>
@@ -422,7 +368,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../slam/" class="md-nav__link">
+      <a href="../../../slam/" class="md-nav__link">
         SLAM
       </a>
     </li>
@@ -469,7 +415,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../programming/cpp/" class="md-nav__link">
+      <a href="../../../../programming/cpp/" class="md-nav__link">
         C++
       </a>
     </li>
@@ -483,7 +429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../programming/cuda/" class="md-nav__link">
+      <a href="../../../../programming/cuda/" class="md-nav__link">
         CUDA
       </a>
     </li>
@@ -497,7 +443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../programming/python/" class="md-nav__link">
+      <a href="../../../../programming/python/" class="md-nav__link">
         Python
       </a>
     </li>
@@ -544,7 +490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../system/bazel/" class="md-nav__link">
+      <a href="../../../../system/bazel/" class="md-nav__link">
         bazel
       </a>
     </li>
@@ -558,7 +504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../system/docker/" class="md-nav__link">
+      <a href="../../../../system/docker/" class="md-nav__link">
         docker
       </a>
     </li>
@@ -572,7 +518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../system/pytorch/" class="md-nav__link">
+      <a href="../../../../system/pytorch/" class="md-nav__link">
         pytorch
       </a>
     </li>
@@ -586,7 +532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../system/ros2/" class="md-nav__link">
+      <a href="../../../../system/ros2/" class="md-nav__link">
         ros2
       </a>
     </li>
@@ -615,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/" class="md-nav__link">
+      <a href="../../../../about/" class="md-nav__link">
         About
       </a>
     </li>
@@ -649,15 +595,49 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#modules" class="md-nav__link">
-    Modules
+  <a href="#the-deal" class="md-nav__link">
+    The Deal
   </a>
+  
+    <nav class="md-nav" aria-label="The Deal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bounding-box-prediction" class="md-nav__link">
+    Bounding Box Prediction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-prediction" class="md-nav__link">
+    Class Prediction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predictions-across-scales" class="md-nav__link">
+    Predictions Across Scales
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-extractor" class="md-nav__link">
+    Feature Extractor
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    Architecture
+  <a href="#things-they-tried-that-didnt-work" class="md-nav__link">
+    Things They Tried That Didn't Work
   </a>
   
 </li>
@@ -677,18 +657,45 @@
                   
 
 
-<h1 id="detection">Detection</h1>
-<h2 id="modules">Modules</h2>
-<!-- - [Recurrent Neural Network](modules/rnn/rnn.md) -->
+<h1 id="yolov3-an-incremental-improvement">YOLOv3: An Incremental Improvement</h1>
+<p><img alt="yolo_v3" src="../img/Screenshot%202023-01-02%20at%208.31.56%20AM.png" /></p>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
 <ul>
-<li><a href="modules/attention/attention/">Attention101</a></li>
-<li><a href="modules/transformer/transformer/">Transformer</a></li>
-<li><a href="modules/vision_transformer/vit/">Vision Transformer</a></li>
-<li><a href="modules/mono_bev/mono_bev/">Monocular BEV Perception</a></li>
+<li>A bunch of little design changes to make it better.</li>
+<li>It's a little bigger than last time but more accurate.</li>
 </ul>
-<h2 id="architecture">Architecture</h2>
+</div>
+<h2 id="the-deal">The Deal</h2>
+<h3 id="bounding-box-prediction">Bounding Box Prediction</h3>
+<p>Following YOLOv2, YOLOv3 predicts bounding boxes using dimension clusters as anchor boxes. The network predicts 4 coordinates for each bounding box, <span class="arithmatex">\(t_x\)</span>, <span class="arithmatex">\(t_y\)</span>, <span class="arithmatex">\(t_w\)</span>, <span class="arithmatex">\(t_h\)</span>. If the cell is offset from the top left corner of the image by <span class="arithmatex">\((c_x, c_y)\)</span> and the bounding box prior has width and height <span class="arithmatex">\(p_w\)</span>, <span class="arithmatex">\(p_h\)</span>, then the predictions correspond to:</p>
+<p><img alt="box_encoding" src="../img/Screenshot%202023-01-02%20at%2012.16.20%20PM.png" /></p>
+<p>YOLOv3 predicts an objectness score for each bounding box using logistic regression.</p>
 <ul>
-<li><a href="architecture/yolo/">YOLO</a></li>
+<li>This should be 1 if the bounding box prior overlaps a ground truth object by more than any other bounding box prior.</li>
+<li>If the bounding box prior is not the best but does overlap a ground truth object by more than some threshold they ignore the prediction, following Faster-RCNN (they use the threshold of 0.5).</li>
+</ul>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Unlike Faster-RCNN, they only assigns one bounding box prior for each ground truth object. </p>
+</div>
+<p>If a bounding box prior is not assigned to a ground truth object it incurs no loss for coordinate or class predictions, only objectness.</p>
+<h3 id="class-prediction">Class Prediction</h3>
+<p>Each box predicts the classes the bounding box may contain using multilabel classification. They do not use a softmax as they found it is unnecessary for good performance, instead they simply use independent logistic classifiers. During training they use binary cross-entropy loss for the class predictions.</p>
+<h3 id="predictions-across-scales">Predictions Across Scales</h3>
+<p>YOLOv3 predicts boxes at 3 different scales. Their system extract features from those scales using a similar concept to feature pyramid networks (FPN). </p>
+<ul>
+<li>From their base feature extractor they add several convolutional layers. The last of these predicts a 3D tensor encoding bounding box, objectness, and class predictions. </li>
+<li>Next they take the feature map from 2 layers previous and upsample it by 2x. They also take a feature map from earlier in the network and merge it with their upsampled features using concatenation. They then add a few more convolutional layers to process this combined feature map, and eventually predict a similar tensor, although now twice the size. </li>
+<li>They perform the same design one more time to predict boxes for the final scale.</li>
+</ul>
+<h3 id="feature-extractor">Feature Extractor</h3>
+<p>The new network is a hybrid approach between the network used in YOLOv2 (Darknet-19) and that new fangled residual network stuff. The network uses successive 3 x 3 and 1 x 1 convolutional layers but now has some shortcut connections as well and is significantly larger. It has 53 convolutional layers so they call it Darknet-53.</p>
+<p><img alt="darknet_53" src="../img/Screenshot%202023-01-02%20at%2012.38.24%20PM.png" /></p>
+<h2 id="things-they-tried-that-didnt-work">Things They Tried That Didn't Work</h2>
+<ul>
+<li>Focal loss. YOLOv3 may already be robust to the problem focal loss is trying to solve because it has separate objectness predictions and conditional class predictions.</li>
+<li>Dual IoU thresholds and truth assignment. Faster-RCNN uses two IoU thresholds during training. If a prediction overlaps the ground truth by 0.7 it is as a positive example, by [0.3 - 0.7] it is ignored, less than 0.3 for all ground truth objects it is a negative example.</li>
 </ul>
 
 
@@ -705,42 +712,6 @@
       </main>
       
         <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
-      
-        
-        <a href="../papers/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Papers" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Papers
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../labeling/" class="md-footer__link md-footer__link--next" aria-label="Next: Labeling" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Labeling
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -777,12 +748,12 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.8492ddcf.min.js"></script>
       
-        <script src="../../javascripts/mathjax.js"></script>
+        <script src="../../../../javascripts/mathjax.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       

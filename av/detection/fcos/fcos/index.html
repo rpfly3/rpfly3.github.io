@@ -13,7 +13,7 @@
     
     
       
-        <title>YOLOv4: Optimal Speed and Accuracy of Object Detection - Pengfei's Docs</title>
+        <title>FCOS: Fully Convolutional One-Stage Object Detection - Pengfei's Docs</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#yolov4-optimal-speed-and-accuracy-of-object-detection" class="md-skip">
+        <a href="#fcos-fully-convolutional-one-stage-object-detection" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              YOLOv4: Optimal Speed and Accuracy of Object Detection
+              FCOS: Fully Convolutional One-Stage Object Detection
             
           </span>
         </div>
@@ -610,35 +610,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#object-detection-models" class="md-nav__link">
-    Object Detection Models
+  <a href="#anchor-based-detectors" class="md-nav__link">
+    Anchor-based Detectors.
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#bag-of-freebies" class="md-nav__link">
-    Bag of Freebies
-  </a>
-  
-    <nav class="md-nav" aria-label="Bag of Freebies">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#data-augmentation" class="md-nav__link">
-    Data Augmentation
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bag-of-specials" class="md-nav__link">
-    Bag of Specials
+  <a href="#anchor-free-detectors" class="md-nav__link">
+    Anchor-free Detectors
   </a>
   
 </li>
@@ -649,30 +629,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#methodology" class="md-nav__link">
-    Methodology
+  <a href="#proposed-approach" class="md-nav__link">
+    Proposed Approach
   </a>
   
-    <nav class="md-nav" aria-label="Methodology">
+    <nav class="md-nav" aria-label="Proposed Approach">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#selection-of-architecture" class="md-nav__link">
-    Selection of Architecture
+  <a href="#fully-convolutional-one-stage-object-detector" class="md-nav__link">
+    Fully Convolutional One-Stage Object Detector
+  </a>
+  
+    <nav class="md-nav" aria-label="Fully Convolutional One-Stage Object Detector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network-outputs" class="md-nav__link">
+    Network Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-level-prediction-with-fpn-for-fcos" class="md-nav__link">
+    Multi-level Prediction with FPN for FCOS
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#selection-of-bof-and-bos" class="md-nav__link">
-    Selection of BoF and BoS
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#additional-improvements" class="md-nav__link">
-    Additional Improvements
+  <a href="#center-ness-for-fcos" class="md-nav__link">
+    Center-ness for FCOS
   </a>
   
 </li>
@@ -697,80 +690,88 @@
                   
 
 
-<h1 id="yolov4-optimal-speed-and-accuracy-of-object-detection">YOLOv4: Optimal Speed and Accuracy of Object Detection</h1>
-<p><img alt="yolov4" src="../img/Screenshot%202022-11-26%20at%2010.48.17%20PM.png" /></p>
+<h1 id="fcos-fully-convolutional-one-stage-object-detection">FCOS: Fully Convolutional One-Stage Object Detection</h1>
+<p><img alt="fcos" src="../img/Screenshot%202022-12-30%20at%202.06.03%20PM.png" /></p>
 <div class="admonition abstract">
 <p class="admonition-title">Abstract</p>
-<p>There are a huge number of features which are said to improve Convolutional Neural Network (CNN) accuracy. Practical testing of combinations of such features on large datasets, and theoretical justification of the result, is required. </p>
+<p>They propose a fully convolutional one-stage object detector (FCOS) to solve object detection in a per-pixel prediction fashion, analogue to semantic segmentation. <mark>The proposed detector FCOS is anchor box free, as well as proposal free.</mark></p>
 <ul>
-<li>Some features operate on certain models exclusively and for certain problems exclusively, or only for small-scale datasets; </li>
-<li>while some features, such as batch-normalization and residual-connections, are applicable to the majority of models, tasks, and datasets.</li>
+<li>avoid the complicated computation related to anchor boxes such as calculating overlapping during training.</li>
+<li>avoid all hyper-parameters related to anchor boxes, which are often very sensitive to the final detection performance.</li>
 </ul>
+<p>FCOS: a much simpler and flexible detection framework achieving improved detection accuracy.</p>
 </div>
 <h2 id="introduction">Introduction</h2>
-<p>The main goal of this work is designing a fast operating speed of an object detector in production systems and optimization for parallel computations, rather than the low computation volume theoretical indicator (BFLOP). </p>
-<h2 id="related-work">Related Work</h2>
-<h3 id="object-detection-models">Object Detection Models</h3>
-<p><img alt="object_detector" src="../img/Screenshot%202022-11-26%20at%2010.59.14%20PM.png" /></p>
-<p>A modern detector is usually composed of two parts, a backbone which is pre-trained on ImageNet and a head which is used to predict classes and bounding boxes of objects. Object detectors developed in recent years often insert some layers between backbone and head, and these layers are usually used to collect feature maps from different stages. They call it the neck of an object detector.</p>
-<h3 id="bag-of-freebies">Bag of Freebies</h3>
-<p>They call methods that only change the training strategy or only increase the training cost as "bag of freebies".</p>
-<h4 id="data-augmentation">Data Augmentation</h4>
-<h3 id="bag-of-specials">Bag of Specials</h3>
-<p>For those plugin modules and post-processing methods that only increase the inference cost by a small amount but can significantly improve the accuracy of object detection, they call them "bag of specials". </p>
-<h2 id="methodology">Methodology</h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The basic aim is fast operating speed of neural network, in production systems and optimization for parallel computations, rather than the low computation volume theoretical indicator (BFLOP).</p>
+<p><strong>Anchor Based Detection</strong></p>
+<p><mark>All current mainstream detectors such as Faster R-CNN, SSD and YOLOv2, v3 rely on a set of pre-defined anchor boxes and it has long been believed that the use of anchor boxes is the key to detectors' success.</mark> Despite their great success, it is important to note that anchor-based detectors suffer some drawbacks:</p>
+<ul>
+<li>Detection performance is sensitive to the sizes, aspect ratios and number of anchor boxes. <mark>These hyper-parameters need to be carefully tuned in anchor-based detectors.</mark></li>
+<li>Even with careful design, because the scales and aspect ratios of anchor boxes are kept fixed, detectors encounter difficulties to deal with object candidates with large shape variations, particularly for small objects. <mark>The pre-defined anchor boxes also hamper the generalization ability of detectors, as they need to be re-designed on new detection tasks with different object sizes or aspect ratios.</mark></li>
+<li>In order to achieve a high recall rate, an anchor-based detector is required to densely place anchor boxes on the input image. Most of these anchor boxes are labelled as negative samples during training. <mark>The excessive number of negative samples aggravates the imbalance between positive and negative samples in training.</mark></li>
+<li>Anchor boxes also involve complicated computation such as calculating the IoU scores with ground-truth bounding boxes.</li>
+</ul>
+<p><strong>Fully Convolutional Networks (FCNs)</strong></p>
+<p>In the literature, some works attempted to leverage the FCNs-based framework for object detection such as DenseBox. However, to handle the bounding boxes with different sizes, DenseBox crops and resizes training images to a fixed scale. Thus DenseBox has to perform detection on image pyramids, which is against FCN's philosophy of computing all convolutions once. In addition, it is believed that these methods do not work well when applied to generic object detection with highly overlapped bounding boxes. </p>
+<p><img alt="box_encoding" src="../img/Screenshot%202023-01-01%20at%2011.31.44%20AM.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The highly overlapped bounding boxes result in an intractable ambiguity: it is not clear w.r.t. which bounding box to regress for the pixels in the overlapped regions.</p>
 </div>
-<p>They present two options of real-time neural networks:</p>
+<p>They took a closer look at the issue and show that <mark>with FPN this ambiguity can be largely eliminated.</mark></p>
 <ul>
-<li>For GPU, they use a small number of groups (1 - 8) in convolutional layers: CSPResNeXt50/CSPDarknet53.</li>
-<li>For VPU, they use grouped-convolution, but they retrain from using Squeeze-and-excitement (SE) blocks -- specifically this includes the following models: EfficientNet-lite/MixNet/GhostNet/MobileNetV3.</li>
+<li>their method can obtain comparable detection accuracy with those traditional anchor based detectors.</li>
+<li>their method may produce a number of low-quality predicted bounding boxes at the locations that are far from the center of an target object. In order to suppress these low-quality detections, they introduce a novel "center-ness" branch (only one layer) to predict the deviation of a pixel to the center of its corresponding bounding boxes.</li>
 </ul>
-<h3 id="selection-of-architecture">Selection of Architecture</h3>
-<ul>
-<li>The objective is to find the optimal balance among the input network resolution, the convolutional layer number, the parameter number (filter_size^2 * filters * channel/groups), and the number of layer outputs (filters). </li>
-<li>The next objective is to select additional blocks for increasing the receptive field and the best method of parameter aggregation from different backbone levels for different detector levels: e.g. FPN, PAN, ASFF, BiFPN</li>
-</ul>
+<h2 id="related-work">Related Work</h2>
+<h4 id="anchor-based-detectors">Anchor-based Detectors.</h4>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>A reference model which is optimal for classification is not always optimal for a detector. </p>
+<p>Anchor-based detectors inherit the ideas from traditional sliding-window and proposal based detectors such as Fast R-CNN. </p>
 </div>
-<p>In contrast to the classifier, the detector requires the following:</p>
-<ul>
-<li>Higher input network size (resolution) - for detecting multiple small-sized objects.</li>
-<li>More layers - for a higher receptive field to cover the increased size of input network.</li>
-<li>More parameters - for greater capacity of a model to detect multiple objects of different sizes in a single image. </li>
-</ul>
-<p>The influence of the receptive field with different sizes is summarized as follows:</p>
-<ul>
-<li>Up to the object size - allows viewing the entire object.</li>
-<li>Up to network size - allows viewing the context around the object.</li>
-<li>Exceeding the network size - increases the number of connections between the image point and the final activation.</li>
-</ul>
-<p>They add the SPP block over the CSPDarknet53, since it significantly increases the receptive field, separates out the most significant context features and causes almost no reduction of the network operation speed. They use PANet as the method of parameter aggregation from different backbone levels for different detector levels, instead of the FPN used in YOLOv3. </p>
+<p>In anchor-based detectors, the anchor boxes can be viewed as pre-defined sliding windows or proposals, which are classified as positive or negative patches, with an extra offsets regression to refine the prediction of bounding box locations. <mark>Therefore, the anchor boxes in these detectors may be viewed as training samples.</mark></p>
+<p>The design of anchor boxes are popularized by Faster R-CNN in its RPNs, SSD and YOLOv2, and has become the convention in a modern detector.</p>
+<h4 id="anchor-free-detectors">Anchor-free Detectors</h4>
+<p><strong>YOLOv1</strong></p>
+<p>The most popular anchor-free detector might be YOLOv2. <mark>Instead of using anchor boxes, YOLOv1 predicts bounding boxes at points near the center of objects.</mark></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>They choose CSPDarknet53 backbone, SPP additional module, PANet path-aggregation neck, and YOLOv3 (anchor based) head as the architecture of YOLOv4.</p>
+<p>Only the points near the center are used since they are considered to be able to produce higher quality detection. However, since only points near the center are used to predict bounding boxes, YOLOv1 suffers from low recall.</p>
 </div>
-<h3 id="selection-of-bof-and-bos">Selection of BoF and BoS</h3>
-<p>For improving the object detection training, a CNN usually uses the following:</p>
+<p>Compared to YOLOv1, FCOS takes advantages of all points in a ground truth bounding box to predict the bounding boxes and the low-quality detected bounding boxes are suppressed by the proposed "center-ness" branch.</p>
+<p><strong>CornerNet</strong></p>
+<p>CornerNet is a recently proposed one-stage anchor-free detector, which detects a pair of corners of a bounding box and groups them to form the final detected bounding box. <mark>CornerNet requires much more complicated post processing to group the pairs of corners belonging to the same instance. An extra distance metric is learned for the purpose of grouping.</mark></p>
+<h2 id="proposed-approach">Proposed Approach</h2>
+<h3 id="fully-convolutional-one-stage-object-detector">Fully Convolutional One-Stage Object Detector</h3>
+<p>Different from anchor-based detectors, which consider the location on the input image as the center of (multiple) anchor boxes and regress the target bounding box with these anchor boxes as references, they directly regress the target bounding box at the location. <mark>In other words, their detector directly views locations as training samples instead of anchor boxes in anchor-based detectors, which is the same as FCNs for semantic segmentation.</mark></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Specifically, location <span class="arithmatex">\((x, y)\)</span> is considered as a positive sample if it falls into any ground-truth box and the class labels <span class="arithmatex">\(c^*\)</span> of the location is the class label of the ground truth box. Otherwise it is a negative sample and <span class="arithmatex">\(c^* = 0\)</span> (background class).</p>
+</div>
+<p>Besides the label for classification, they also have a 4D real vector being the regression targets for the location.</p>
+<p>If a location falls into multiple bounding boxes, it is considered as an ambiguous sample. They simply choose the bounding box with minimal area as its regression target.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>It is worth noting that FCOS can leverage as many foreground samples as possible to train the regressor. It is different from anchor-based detectors, which only consider the anchor boxes with a highly enough IoU with ground-truth boxes as positive samples.</p>
+</div>
+<h4 id="network-outputs">Network Outputs</h4>
+<p><img alt="fcos_architecture" src="../img/Screenshot%202023-01-01%20at%2012.30.22%20PM.png" /></p>
+<p>It is worth noting that FCOS has <span class="arithmatex">\(9 \times\)</span> fewer network output variables than the popular anchor based detectors with 9 anchor boxes per location. </p>
+<h3 id="multi-level-prediction-with-fpn-for-fcos">Multi-level Prediction with FPN for FCOS</h3>
+<p>Two possible issues of the proposed FCOS can be resolved with multi-level prediction with FPN.</p>
 <ul>
-<li><strong>Activations</strong>: ReLU, leaky-ReLU, parametric-ReLU, ReLU6, SELU, Swish, or Mish</li>
-<li><strong>Bounding box regression loss</strong>: MSE, IoU, GIoU, CIoU, DIoU</li>
-<li><strong>Data augmentation</strong>: CutOut, MixUo, CutMix</li>
-<li><strong>Regularization method</strong>: DropOut, DropPath, Spatial DropOut, or DropBlock.</li>
-<li><strong>Normalization of the network activations by their mean and variance</strong>: Batch Normalization (BN), Cross-GPU Batch Normalization (CGBN or SyncBN), Filter Response Normalization (FRN), or Cross-Iteration Batch Normalization (CBN).</li>
-<li><strong>Skip-connections</strong>: Residual connections, Weighted residual connections, Multi-input weighted residual connections, or Cross stage partial connections (CSP)</li>
+<li>The large stride (e.g., <span class="arithmatex">\(16 \times\)</span>) of the final feature maps in a CNN can result in a relatively low best possible recall (BPR).</li>
+<li>Overlaps in ground-truth boxes can cause intractable ambiguity.</li>
 </ul>
-<h3 id="additional-improvements">Additional Improvements</h3>
-<p>In order to make the designed detector more suitable for training on single GPU, they made additional design and improvement as follows:</p>
-<ul>
-<li>They introduce a new method of data augmentation Mosaic, and Self-Adversarial Training (SAT).</li>
-<li>They select optimal hyper-parameters while applying genetic algorithms. </li>
-<li>They modify some existing methods to make the design suitable for efficient training and detection. </li>
-</ul>
+<p>Unlike anchor-based detectors, which assign anchor boxes with different sizes to different feature levels, they directly limit the range of bounding box regression for each level.</p>
+<p>Since objects with different sizes are assigned to different feature levels and most overlapping happens between objects with considerably different sizes. If a location, even with multi-level prediction used, is still assigned to more than one ground-truth boxes, they simply choose the ground-truth box with minimal area as its target.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>They share the heads between different feature levels, not only making the detector parameter-efficient but also improving the detection performance.</p>
+</div>
+<p>Instead of using the standard <span class="arithmatex">\(exp(x)\)</span>, they make use of <span class="arithmatex">\(exp(s_ix)\)</span> with a trainable scalar <span class="arithmatex">\(s_i\)</span> to automatically adjust the base of the exponential function for feature level <span class="arithmatex">\(P_i\)</span>, which slightly improves the detection performance.</p>
+<h3 id="center-ness-for-fcos">Center-ness for FCOS</h3>
+<p>After using multi-level prediction in FCOS, there is still a performance gap between FCOS and anchor-based detectors. They observed that it is due to a lot of low-quality predicted bounding boxes produced by locations far away from the center of an object.</p>
+<p>They add a single-layer branch, in parallel with the classification branch to predict the "center-ness" of a location. The center-ness depicts the normalized distance from the location to the center of the object that the location is responsible for.</p>
 
 
 
